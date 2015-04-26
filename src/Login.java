@@ -20,11 +20,11 @@ public class Login extends javax.swing.JFrame {
 	private void initComponents() {
 
 		jLabel1 = new javax.swing.JLabel();
-		jTextField1 = new javax.swing.JTextField();
+		username = new javax.swing.JTextField();
 		jLabel2 = new javax.swing.JLabel();
-		jTextField2 = new javax.swing.JTextField();
-		jButton1 = new javax.swing.JButton();
-		jButton2 = new javax.swing.JButton();
+		loginButton = new javax.swing.JButton();
+		registerButton = new javax.swing.JButton();
+		password = new javax.swing.JPasswordField();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -32,9 +32,14 @@ public class Login extends javax.swing.JFrame {
 
 		jLabel2.setText("\u5bc6\u7801\uff1a");
 
-		jButton1.setText("\u767b\u9646");
+		loginButton.setText("\u767b\u9646");
 
-		jButton2.setText("\u6ce8\u518c");
+		registerButton.setText("\u6ce8\u518c");
+		registerButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				registerButtonActionPerformed(evt);
+			}
+		});
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
@@ -56,14 +61,15 @@ public class Login extends javax.swing.JFrame {
 																layout
 																		.createSequentialGroup()
 																		.addComponent(
-																				jButton1)
+																				loginButton)
 																		.addPreferredGap(
 																				javax.swing.LayoutStyle.ComponentPlacement.RELATED,
 																				javax.swing.GroupLayout.DEFAULT_SIZE,
 																				Short.MAX_VALUE)
 																		.addComponent(
-																				jButton2))
+																				registerButton))
 														.addGroup(
+																javax.swing.GroupLayout.Alignment.TRAILING,
 																layout
 																		.createSequentialGroup()
 																		.addGroup(
@@ -75,22 +81,22 @@ public class Login extends javax.swing.JFrame {
 																						.addComponent(
 																								jLabel2))
 																		.addGap(
-																				36,
-																				36,
-																				36)
+																				35,
+																				35,
+																				35)
 																		.addGroup(
 																				layout
 																						.createParallelGroup(
-																								javax.swing.GroupLayout.Alignment.LEADING,
+																								javax.swing.GroupLayout.Alignment.TRAILING,
 																								false)
 																						.addComponent(
-																								jTextField2)
+																								password)
 																						.addComponent(
-																								jTextField1,
+																								username,
 																								javax.swing.GroupLayout.DEFAULT_SIZE,
 																								185,
 																								Short.MAX_VALUE))))
-										.addContainerGap(68, Short.MAX_VALUE)));
+										.addContainerGap(69, Short.MAX_VALUE)));
 		layout
 				.setVerticalGroup(layout
 						.createParallelGroup(
@@ -105,7 +111,7 @@ public class Login extends javax.swing.JFrame {
 																javax.swing.GroupLayout.Alignment.BASELINE)
 														.addComponent(jLabel1)
 														.addComponent(
-																jTextField1,
+																username,
 																javax.swing.GroupLayout.PREFERRED_SIZE,
 																javax.swing.GroupLayout.DEFAULT_SIZE,
 																javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -116,24 +122,33 @@ public class Login extends javax.swing.JFrame {
 																javax.swing.GroupLayout.Alignment.BASELINE)
 														.addComponent(jLabel2)
 														.addComponent(
-																jTextField2,
+																password,
 																javax.swing.GroupLayout.PREFERRED_SIZE,
 																javax.swing.GroupLayout.DEFAULT_SIZE,
 																javax.swing.GroupLayout.PREFERRED_SIZE))
 										.addPreferredGap(
 												javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-												50, Short.MAX_VALUE)
+												52, Short.MAX_VALUE)
 										.addGroup(
 												layout
 														.createParallelGroup(
 																javax.swing.GroupLayout.Alignment.BASELINE)
-														.addComponent(jButton1)
-														.addComponent(jButton2))
+														.addComponent(
+																loginButton)
+														.addComponent(
+																registerButton))
 										.addGap(47, 47, 47)));
 
 		pack();
 	}// </editor-fold>
 	//GEN-END:initComponents
+
+	private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+		register reg = new register();
+		reg.setVisible(true);
+//		this.dispose();
+	}
 
 	/**
 	 * @param args the command line arguments
@@ -148,12 +163,12 @@ public class Login extends javax.swing.JFrame {
 
 	//GEN-BEGIN:variables
 	// Variables declaration - do not modify
-	private javax.swing.JButton jButton1;
-	private javax.swing.JButton jButton2;
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel2;
-	private javax.swing.JTextField jTextField1;
-	private javax.swing.JTextField jTextField2;
+	private javax.swing.JButton loginButton;
+	private javax.swing.JPasswordField password;
+	private javax.swing.JButton registerButton;
+	private javax.swing.JTextField username;
 	// End of variables declaration//GEN-END:variables
 
 }
