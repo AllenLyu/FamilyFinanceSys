@@ -33,6 +33,11 @@ public class Login extends javax.swing.JFrame {
 		jLabel2.setText("\u5bc6\u7801\uff1a");
 
 		loginButton.setText("\u767b\u9646");
+		loginButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				loginButtonActionPerformed(evt);
+			}
+		});
 
 		registerButton.setText("\u6ce8\u518c");
 		registerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +147,12 @@ public class Login extends javax.swing.JFrame {
 		pack();
 	}// </editor-fold>
 	//GEN-END:initComponents
+
+	private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+		Add addPanel = new Add();
+		addPanel.setVisible(true);
+	}
 
 	private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
