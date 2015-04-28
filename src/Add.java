@@ -42,11 +42,11 @@ public class Add extends javax.swing.JPanel {
 						60)));
 		layout.setVerticalGroup(layout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup().addGap(75, 75, 75).addComponent(
+				layout.createSequentialGroup().addGap(57, 57, 57).addComponent(
 						jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE,
 						javax.swing.GroupLayout.DEFAULT_SIZE,
 						javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(202, Short.MAX_VALUE)));
+						.addContainerGap(220, Short.MAX_VALUE)));
 	}// </editor-fold>
 	//GEN-END:initComponents
 

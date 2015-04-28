@@ -147,7 +147,6 @@ public class Login extends javax.swing.JFrame {
 		// TODO add your handling code here:
 		register reg = new register();
 		reg.setVisible(true);
-//		this.dispose();
 	}
 
 	/**
