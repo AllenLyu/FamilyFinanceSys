@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Finance>
+	<number>1</number>
+	<amount>20000.0</amount>
+	<type>salary</type>
+</Finance>

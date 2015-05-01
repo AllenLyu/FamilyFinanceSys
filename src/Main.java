@@ -1,3 +1,17 @@
+import java.io.FileNotFoundException;
+
+import javax.xml.xquery.XQConnection;
+import javax.xml.xquery.XQDataSource;
+import javax.xml.xquery.XQException;
+import javax.xml.xquery.XQItem;
+import javax.xml.xquery.XQPreparedExpression;
+import javax.xml.xquery.XQResultSequence;
+
+import net.sf.saxon.xqj.SaxonXQDataSource;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+
 /*
  * Main.java
  *
@@ -102,6 +116,12 @@ public class Main extends javax.swing.JFrame {
 				.createLineBorder(new java.awt.Color(0, 0, 0)));
 
 		showAllDataButton.setText("\u663e\u793a\u5168\u90e8\u6570\u636e");
+		showAllDataButton
+				.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+						showAllDataButtonActionPerformed(evt);
+					}
+				});
 
 		addDataButton.setText("\u6dfb\u52a0");
 
@@ -187,7 +207,7 @@ public class Main extends javax.swing.JFrame {
 		jLabel3.setText("\u641c\u7d22\u7c7b\u578b\uff1a");
 
 		serchType.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"æ— ", "Item 2", "Item 3", "Item 4" }));
+				"ÎÞ", "Item 2", "Item 3", "Item 4" }));
 
 		jLabel4.setText("\u5173\u952e\u5b57\uff1a");
 
@@ -199,9 +219,14 @@ public class Main extends javax.swing.JFrame {
 				"Item 1", "Item 2", "Item 3", "Item 4" }));
 
 		jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"æ”¶å…¥", "æ”¯å‡º" }));
+				"ÊÕÈë", "Ö§³ö" }));
 
 		serchButton.setText("\u641c\u7d22");
+		serchButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				serchButtonActionPerformed(evt);
+			}
+		});
 
 		javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(
 				jPanel3);
@@ -572,6 +597,33 @@ public class Main extends javax.swing.JFrame {
 		pack();
 	}// </editor-fold>
 	//GEN-END:initComponents
+
+	//mainframe ÏÔÊ¾È«²¿Êý¾Ý¼àÌý
+	private void showAllDataButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		String usr="allen";
+		String content = "";  
+        XQItem xqItem = null;  
+        XQDataSource ds = new SaxonXQDataSource();  
+        try {  
+            XQConnection conn = ds.getConnection();  
+            XQPreparedExpression exp = conn  
+                    .prepareExpression("for $Finance in doc("+usr+".xml)/Finance return $Finance/number");
+            XQResultSequence result = exp.executeQuery();
+            while (result.next()) {
+                xqItem = result.getItem();
+                content +=xqItem.getItemAsString(null);
+             }
+            System.out.println(content);
+        } catch (XQException e) {  
+            // TODO: handle exception  
+            e.printStackTrace();  
+        }
+	}
+
+	//mainframe ²éÑ¯¹¦ÄÜ¼àÌý
+	private void serchButtonActionPerformed(java.awt.event.ActionEvent evt) {
+			
+	}
 
 	/**
 	 * @param args the command line arguments

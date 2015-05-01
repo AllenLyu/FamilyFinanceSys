@@ -172,6 +172,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x663e;&#x793a;&#x5168;&#x90e8;&#x6570;&#x636e;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showAllDataButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="addDataButton">
           <Properties>
@@ -326,6 +329,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x641c;&#x7d22;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="serchButtonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
