@@ -1,5 +1,7 @@
 import java.io.FileNotFoundException;
 
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQDataSource;
 import javax.xml.xquery.XQException;
@@ -36,6 +38,7 @@ public class Main extends javax.swing.JFrame {
 	 */
 	//GEN-BEGIN:initComponents
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
+	DefaultTableModel myTable = new DefaultTableModel();
 	private void initComponents() {
 
 		jPanel1 = new javax.swing.JPanel();
@@ -63,7 +66,7 @@ public class Main extends javax.swing.JFrame {
 		extUsrDataButton = new javax.swing.JButton();
 		jPanel5 = new javax.swing.JPanel();
 		jScrollPane1 = new javax.swing.JScrollPane();
-		jTable1 = new javax.swing.JTable();
+		jTable1 = new javax.swing.JTable(myTable);
 		jPanel6 = new javax.swing.JPanel();
 		jLabel7 = new javax.swing.JLabel();
 		incomeText = new javax.swing.JLabel();
@@ -380,12 +383,22 @@ public class Main extends javax.swing.JFrame {
 
 		jPanel5.setBorder(javax.swing.BorderFactory
 				.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-		jTable1.setModel(new javax.swing.table.DefaultTableModel(
-				new Object[][] { { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null } }, new String[] { "Title 1",
-						"Title 2", "Title 3", "Title 4" }));
+		
+		/******jTable********/
+		TableColumn Column1=new TableColumn();
+		Column1.setHeaderValue("编号");
+		TableColumn Column2=new TableColumn();
+		Column2.setHeaderValue("数目");
+		TableColumn Column3=new TableColumn();
+		Column3.setHeaderValue("类型");
+		TableColumn Column4=new TableColumn();
+		Column4.setHeaderValue("备注");
+		jTable1.addColumn(Column1);
+		jTable1.addColumn(Column2);
+		jTable1.addColumn(Column3);
+		jTable1.addColumn(Column4);
+		/*******************/
+		
 		jScrollPane1.setViewportView(jTable1);
 
 		javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(
@@ -599,22 +612,30 @@ public class Main extends javax.swing.JFrame {
 	//GEN-END:initComponents
 
 	//mainframe 显示全部数据监听
-	private void showAllDataButtonActionPerformed(java.awt.event.ActionEvent evt) {
+	private void showAllDataButtonActionPerformed(java.awt.event.ActionEvent evt){
 		String usr="allen";
 		String content = "";  
-        XQItem xqItem = null;  
+//        XQItem xqItem = null;  
+        Object xqItem = null;
         XQDataSource ds = new SaxonXQDataSource();  
         try {  
             XQConnection conn = ds.getConnection();  
             XQPreparedExpression exp = conn  
-                    .prepareExpression("for $Finance in doc("+usr+".xml)/Finance return $Finance/number");
+            		  .prepareExpression("for $Finance in doc('"+usr+".xml')/Finance return data($Finance)");
             XQResultSequence result = exp.executeQuery();
+            Object object[][]=new Object[4][4];
+            int i=0;
+//            result.next();
+//            System.out.println(result.getObject());
             while (result.next()) {
-                xqItem = result.getItem();
-                content +=xqItem.getItemAsString(null);
-             }
-            System.out.println(content);
-        } catch (XQException e) {  
+                xqItem = result.getObject();
+//                System.out.println(xqItem);
+//                for(int j=0;j<4;j++)
+                	object[i][0]=xqItem;
+                i++;
+            }
+            myTable.addRow(object);
+        } catch (XQException e) {
             // TODO: handle exception  
             e.printStackTrace();  
         }
