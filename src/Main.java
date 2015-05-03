@@ -202,6 +202,11 @@ public class Main extends javax.swing.JFrame {
 				"收入", "支出" }));
 
 		serchButton.setText("\u641c\u7d22");
+		serchButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				serchButtonActionPerformed(evt);
+			}
+		});
 
 		javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(
 				jPanel3);
@@ -572,6 +577,11 @@ public class Main extends javax.swing.JFrame {
 		pack();
 	}// </editor-fold>
 	//GEN-END:initComponents
+
+	private void serchButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+		System.out.println(jTable1.getValueAt(0, 0));
+	}
 
 	/**
 	 * @param args the command line arguments
