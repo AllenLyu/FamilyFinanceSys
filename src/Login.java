@@ -1,3 +1,10 @@
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import DOM.DOM4User;
+import DOM.User;
+
 /*
  * Login.java
  *
@@ -35,7 +42,12 @@ public class Login extends javax.swing.JFrame {
 		loginButton.setText("\u767b\u9646");
 		loginButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				loginButtonActionPerformed(evt);
+				try {
+					loginButtonActionPerformed(evt);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -148,10 +160,29 @@ public class Login extends javax.swing.JFrame {
 	}// </editor-fold>
 	//GEN-END:initComponents
 
-	private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
+	private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
 		// TODO add your handling code here:
-		Add addPanel = new Add();
-		addPanel.setVisible(true);
+		List<User> list = DOM4User.getUsers("H:/students.xml");
+		String name = username.getText();
+		String pwd = password.getText().hashCode()+"";
+		boolean flag = false;
+		for (int i = 0; i < list.size(); i++) {
+			if(name.equals(list.get(i).getName()))
+			{
+				String interPwd = list.get(i).getPwd();
+				if(pwd.equalsIgnoreCase(interPwd))
+				{
+					Main main = new Main();
+					main.setVisible(true);
+					flag = true;
+					break;
+				}
+			}
+		}
+		if(!flag)
+		{
+			JOptionPane.showMessageDialog(null,  "用户名密码错误，从新输入","警告", JOptionPane.PLAIN_MESSAGE);
+		}
 	}
 
 	private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {

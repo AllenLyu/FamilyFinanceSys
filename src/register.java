@@ -1,3 +1,9 @@
+import javax.swing.JOptionPane;
+
+import DOM.DOM4User;
+import DOM.GetTime;
+import DOM.User;
+
 /*
  * register.java
  *
@@ -42,8 +48,18 @@ public class register extends javax.swing.JFrame {
 		repeatPwd.setText("\u91cd\u590d\u5bc6\u7801\uff1a");
 
 		yesButton.setText("\u6ce8\u518c");
+		yesButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				yesButtonActionPerformed(evt);
+			}
+		});
 
 		resetButton.setText("\u91cd\u7f6e");
+		resetButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				resetButtonActionPerformed(evt);
+			}
+		});
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
@@ -184,6 +200,29 @@ public class register extends javax.swing.JFrame {
 		pack();
 	}// </editor-fold>
 	//GEN-END:initComponents
+
+	private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+		usrNameText.setText("");
+		pwdText.setText("");
+		repeatPwdText.setText("");
+	}
+
+	private void yesButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+		String name = usrNameText.getText();
+		String pwd = pwdText.getText().hashCode() + "";
+		String repwd = repeatPwdText.getText().hashCode() + "";
+		if (pwd.equalsIgnoreCase(repwd)) {
+			JOptionPane.showMessageDialog(null, "注册成功", "提示",
+					JOptionPane.PLAIN_MESSAGE);
+			User in = new User(name, pwd, GetTime.getTime());
+			DOM4User.insertUser(in);
+		} else {
+			JOptionPane.showMessageDialog(null, "两次密码不一致，重输入", "提示",
+					JOptionPane.PLAIN_MESSAGE);
+		}
+	}
 
 	/**
 	 * @param args the command line arguments

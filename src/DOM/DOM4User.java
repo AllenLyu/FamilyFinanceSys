@@ -3,7 +3,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.ObjectInputStream.GetField;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -52,10 +54,10 @@ public class DOM4User {
 	}
 	public static void main(String[] args) {
 		try {
-			List<User> list = getUsers("H:/students.xml");
+//			List<User> list = getUsers("H:/students.xml");
 			System.out.println("22");
-			User we = new User("itas", "321".hashCode()+"", "11");
-			insertUser(we);
+			User itas = new User("itas", "124".hashCode()+"", GetTime.getTime());
+			insertUser(itas);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
