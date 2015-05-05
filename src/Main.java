@@ -1,18 +1,14 @@
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.xml.xquery.XQConnection;
-import javax.xml.xquery.XQDataSource;
-import javax.xml.xquery.XQException;
-import javax.xml.xquery.XQItem;
-import javax.xml.xquery.XQPreparedExpression;
-import javax.xml.xquery.XQResultSequence;
+import javax.swing.text.html.HTMLDocument.Iterator;
+import javax.xml.parsers.ParserConfigurationException;
 
-import net.sf.saxon.xqj.SaxonXQDataSource;
+import org.xml.sax.SAXException;
 
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
+import DOM.Finance;
+import DOM.XQJ4Search;
 
 /*
  * Main.java
@@ -38,7 +34,6 @@ public class Main extends javax.swing.JFrame {
 	 */
 	//GEN-BEGIN:initComponents
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
-	DefaultTableModel myTable = new DefaultTableModel();
 	private void initComponents() {
 
 		jPanel1 = new javax.swing.JPanel();
@@ -66,7 +61,7 @@ public class Main extends javax.swing.JFrame {
 		extUsrDataButton = new javax.swing.JButton();
 		jPanel5 = new javax.swing.JPanel();
 		jScrollPane1 = new javax.swing.JScrollPane();
-		jTable1 = new javax.swing.JTable(myTable);
+		jTable1 = new javax.swing.JTable();
 		jPanel6 = new javax.swing.JPanel();
 		jLabel7 = new javax.swing.JLabel();
 		incomeText = new javax.swing.JLabel();
@@ -210,7 +205,7 @@ public class Main extends javax.swing.JFrame {
 		jLabel3.setText("\u641c\u7d22\u7c7b\u578b\uff1a");
 
 		serchType.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"Œﬁ", "Item 2", "Item 3", "Item 4" }));
+				"Êó†", "Item 2", "Item 3", "Item 4" }));
 
 		jLabel4.setText("\u5173\u952e\u5b57\uff1a");
 
@@ -222,7 +217,7 @@ public class Main extends javax.swing.JFrame {
 				"Item 1", "Item 2", "Item 3", "Item 4" }));
 
 		jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				" ’»Î", "÷ß≥ˆ" }));
+				"Êî∂ÂÖ•", "ÊîØÂá∫" }));
 
 		serchButton.setText("\u641c\u7d22");
 		serchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -383,22 +378,12 @@ public class Main extends javax.swing.JFrame {
 
 		jPanel5.setBorder(javax.swing.BorderFactory
 				.createLineBorder(new java.awt.Color(0, 0, 0)));
-		
-		/******jTable********/
-		TableColumn Column1=new TableColumn();
-		Column1.setHeaderValue("±‡∫≈");
-		TableColumn Column2=new TableColumn();
-		Column2.setHeaderValue(" ˝ƒø");
-		TableColumn Column3=new TableColumn();
-		Column3.setHeaderValue("¿‡–Õ");
-		TableColumn Column4=new TableColumn();
-		Column4.setHeaderValue("±∏◊¢");
-		jTable1.addColumn(Column1);
-		jTable1.addColumn(Column2);
-		jTable1.addColumn(Column3);
-		jTable1.addColumn(Column4);
-		/*******************/
-		
+
+		jTable1.setModel(new javax.swing.table.DefaultTableModel(
+				new Object[][] { { null, null, null, null },
+						{ null, null, null, null }, { null, null, null, null },
+						{ null, null, null, null } }, new String[] { "Title 1",
+						"Title 2", "Title 3", "Title 4" }));
 		jScrollPane1.setViewportView(jTable1);
 
 		javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(
@@ -611,39 +596,21 @@ public class Main extends javax.swing.JFrame {
 	}// </editor-fold>
 	//GEN-END:initComponents
 
-	//mainframe œ‘ æ»´≤ø ˝æ›º‡Ã˝
-	private void showAllDataButtonActionPerformed(java.awt.event.ActionEvent evt){
-		String usr="allen";
-		String content = "";  
-//        XQItem xqItem = null;  
-        Object xqItem = null;
-        XQDataSource ds = new SaxonXQDataSource();  
-        try {  
-            XQConnection conn = ds.getConnection();  
-            XQPreparedExpression exp = conn  
-            		  .prepareExpression("for $Finance in doc('"+usr+".xml')/Finance return data($Finance)");
-            XQResultSequence result = exp.executeQuery();
-            Object object[][]=new Object[4][4];
-            int i=0;
-//            result.next();
-//            System.out.println(result.getObject());
-            while (result.next()) {
-                xqItem = result.getObject();
-//                System.out.println(xqItem);
-//                for(int j=0;j<4;j++)
-                	object[i][0]=xqItem;
-                i++;
-            }
-            myTable.addRow(object);
-        } catch (XQException e) {
-            // TODO: handle exception  
-            e.printStackTrace();  
-        }
+	private void showAllDataButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		XQJ4Search xs=new XQJ4Search();
+		String userid="allen";//Ê†πÊçÆËá™Â∑±ÁöÑÈúÄÊ±ÇÂ°´
+		List<Finance> finanlist=new ArrayList<Finance>();
+		finanlist=xs.xqj4All(userid);
 	}
 
-	//mainframe ≤È—Øπ¶ƒ‹º‡Ã˝
 	private void serchButtonActionPerformed(java.awt.event.ActionEvent evt) {
-			
+		String financetype=(String) jComboBox2.getSelectedItem();
+		String type=(String) jComboBox3.getSelectedItem();
+		String keyword=keyWord.getText();
+		XQJ4Search xs=new XQJ4Search();
+		String userid="allen";//Ê†πÊçÆÈúÄÊ±ÇËá™Â∑±Â°´
+		List<Finance> finanlist=new ArrayList<Finance>();
+		finanlist=xs.xqj4Selected(userid, financetype, type, keyword);
 	}
 
 	/**

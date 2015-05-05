@@ -1,40 +1,56 @@
 package DOM;
 
 public class Finance {
-	private int number;
-	private float amount;
-	private String date;
+	private int id;
+	private int num;
+	private String financetype;
 	private String type;
-	private String content;
+	private String spendingtime;
+	private String remark;
+	private int userid;
 	
-	public int getNumber() {
-		return number;
+	
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setNumber(int number) {
-		this.number = number;
+	public int getId() {
+		return id;
 	}
-	public float getAmount() {
-		return amount;
+	public void setNum(int num) {
+		this.num = num;
 	}
-	public void setAmount(float amount) {
-		this.amount = amount;
+	public int getNum() {
+		return num;
 	}
-	public String getDate() {
-		return date;
+	public void setFinancetype(String financetype) {
+		this.financetype = financetype;
 	}
-	public void setDate(String date) {
-		this.date = date;
-	}
-	public String getType() {
-		return type;
+	public String getFinancetype() {
+		return financetype;
 	}
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getContent() {
-		return content;
+	public String getType() {
+		return type;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setSpendingtime(String spendingtime) {
+		this.spendingtime = spendingtime;
 	}
+	public String getSpendingtime() {
+		return spendingtime;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+	public int getUserid() {
+		return userid;
+	}
+	
 }
