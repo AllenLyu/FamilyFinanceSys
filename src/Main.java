@@ -2,6 +2,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.html.HTMLDocument.Iterator;
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -47,8 +50,6 @@ public class Main extends javax.swing.JFrame {
 		compareButton = new javax.swing.JButton();
 		exitButton = new javax.swing.JButton();
 		jPanel3 = new javax.swing.JPanel();
-		jLabel3 = new javax.swing.JLabel();
-		serchType = new javax.swing.JComboBox();
 		jLabel4 = new javax.swing.JLabel();
 		keyWord = new javax.swing.JTextField();
 		jLabel5 = new javax.swing.JLabel();
@@ -108,7 +109,7 @@ public class Main extends javax.swing.JFrame {
 										.addPreferredGap(
 												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 										.addComponent(timeText)
-										.addContainerGap(44, Short.MAX_VALUE)));
+										.addContainerGap(53, Short.MAX_VALUE)));
 
 		jPanel2.setBorder(javax.swing.BorderFactory
 				.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -202,11 +203,6 @@ public class Main extends javax.swing.JFrame {
 		jPanel3.setBorder(javax.swing.BorderFactory
 				.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-		jLabel3.setText("\u641c\u7d22\u7c7b\u578b\uff1a");
-
-		serchType.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"无", "Item 2", "Item 3", "Item 4" }));
-
 		jLabel4.setText("\u5173\u952e\u5b57\uff1a");
 
 		jLabel5.setText("\u6536\u652f\u7c7b\u578b\uff1a");
@@ -214,10 +210,10 @@ public class Main extends javax.swing.JFrame {
 		jLabel6.setText("\u7c7b\u578b\uff1a");
 
 		jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"Item 1", "Item 2", "Item 3", "Item 4" }));
+				"收入", "支出"}));
 
 		jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"收入", "支出" }));
+				"工资","娱乐","教育"}));
 
 		serchButton.setText("\u641c\u7d22");
 		serchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -240,61 +236,52 @@ public class Main extends javax.swing.JFrame {
 										.addGroup(
 												jPanel3Layout
 														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.LEADING)
-														.addGroup(
-																jPanel3Layout
-																		.createSequentialGroup()
-																		.addComponent(
-																				jLabel3)
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																		.addComponent(
-																				serchType,
-																				0,
-																				165,
-																				Short.MAX_VALUE))
-														.addGroup(
-																jPanel3Layout
-																		.createSequentialGroup()
-																		.addComponent(
-																				jLabel4)
-																		.addGap(
-																				18,
-																				18,
-																				18)
-																		.addComponent(
-																				keyWord,
-																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																				164,
-																				Short.MAX_VALUE)))
-										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-												12,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGroup(
-												jPanel3Layout
-														.createParallelGroup(
 																javax.swing.GroupLayout.Alignment.TRAILING)
-														.addComponent(jLabel6)
-														.addComponent(jLabel5))
+														.addComponent(jLabel5)
+														.addComponent(jLabel4))
 										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 										.addGroup(
 												jPanel3Layout
 														.createParallelGroup(
 																javax.swing.GroupLayout.Alignment.LEADING,
 																false)
 														.addComponent(
-																jComboBox3,
-																0,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE)
+																keyWord,
+																javax.swing.GroupLayout.Alignment.TRAILING)
 														.addComponent(
-																jComboBox2, 0,
-																205,
+																jComboBox2,
+																javax.swing.GroupLayout.Alignment.TRAILING,
+																0, 316,
 																Short.MAX_VALUE))
-										.addGap(35, 35, 35).addComponent(
-												serchButton).addGap(59, 59, 59)));
+										.addGroup(
+												jPanel3Layout
+														.createParallelGroup(
+																javax.swing.GroupLayout.Alignment.TRAILING)
+														.addGroup(
+																jPanel3Layout
+																		.createSequentialGroup()
+																		.addGap(
+																				36,
+																				36,
+																				36)
+																		.addComponent(
+																				jLabel6)
+																		.addPreferredGap(
+																				javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+																		.addComponent(
+																				jComboBox3,
+																				0,
+																				200,
+																				Short.MAX_VALUE))
+														.addGroup(
+																jPanel3Layout
+																		.createSequentialGroup()
+																		.addPreferredGap(
+																				javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+																		.addComponent(
+																				serchButton)))
+										.addContainerGap()));
 		jPanel3Layout
 				.setVerticalGroup(jPanel3Layout
 						.createParallelGroup(
@@ -307,20 +294,19 @@ public class Main extends javax.swing.JFrame {
 												jPanel3Layout
 														.createParallelGroup(
 																javax.swing.GroupLayout.Alignment.BASELINE)
-														.addComponent(jLabel3)
+														.addComponent(jLabel5)
 														.addComponent(
 																jComboBox2,
 																javax.swing.GroupLayout.PREFERRED_SIZE,
 																javax.swing.GroupLayout.DEFAULT_SIZE,
 																javax.swing.GroupLayout.PREFERRED_SIZE)
-														.addComponent(jLabel5)
+														.addComponent(jLabel6)
 														.addComponent(
-																serchType,
+																jComboBox3,
 																javax.swing.GroupLayout.PREFERRED_SIZE,
 																javax.swing.GroupLayout.DEFAULT_SIZE,
 																javax.swing.GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+										.addGap(21, 21, 21)
 										.addGroup(
 												jPanel3Layout
 														.createParallelGroup(
@@ -332,14 +318,8 @@ public class Main extends javax.swing.JFrame {
 																javax.swing.GroupLayout.DEFAULT_SIZE,
 																javax.swing.GroupLayout.PREFERRED_SIZE)
 														.addComponent(
-																jComboBox3,
-																javax.swing.GroupLayout.PREFERRED_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.PREFERRED_SIZE)
-														.addComponent(jLabel6)
-														.addComponent(
 																serchButton))
-										.addContainerGap(24, Short.MAX_VALUE)));
+										.addGap(26, 26, 26)));
 
 		jPanel4.setBorder(javax.swing.BorderFactory
 				.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -372,18 +352,17 @@ public class Main extends javax.swing.JFrame {
 										.addComponent(extUsrButton)
 										.addPreferredGap(
 												javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-												22, Short.MAX_VALUE)
+												31, Short.MAX_VALUE)
 										.addComponent(extUsrDataButton)
 										.addContainerGap()));
 
 		jPanel5.setBorder(javax.swing.BorderFactory
 				.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-		jTable1.setModel(new javax.swing.table.DefaultTableModel(
-				new Object[][] { { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null } }, new String[] { "Title 1",
-						"Title 2", "Title 3", "Title 4" }));
+		
+		String[][] data={};
+		model=new DefaultTableModel(data,columns);
+		jTable1=new JTable(model);
+		
 		jScrollPane1.setViewportView(jTable1);
 
 		javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(
@@ -545,7 +524,7 @@ public class Main extends javax.swing.JFrame {
 																				jPanel3,
 																				javax.swing.GroupLayout.Alignment.LEADING,
 																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																				javax.swing.GroupLayout.DEFAULT_SIZE,
+																				111,
 																				Short.MAX_VALUE)
 																		.addComponent(
 																				jPanel1,
@@ -596,21 +575,44 @@ public class Main extends javax.swing.JFrame {
 	}// </editor-fold>
 	//GEN-END:initComponents
 
+	public String[][] getDataArray(List<Finance> finanlist, String[][] data) {
+		for (int j = 0; j < finanlist.size(); j++) {
+			int id = finanlist.get(j).getId();
+			int num = finanlist.get(j).getNum();
+			String financetype = finanlist.get(j).getFinancetype();
+			String type = finanlist.get(j).getType();
+			String spendingtime = finanlist.get(j).getSpendingtime();
+			String remark = finanlist.get(j).getRemark();
+			int userid = finanlist.get(j).getUserid();
+			String finance[] = { String.valueOf(id), String.valueOf(num),
+					financetype, type, spendingtime, remark,
+					String.valueOf(userid) };
+			data[j] = finance;
+		}
+		return data;
+	}
+
 	private void showAllDataButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		XQJ4Search xs=new XQJ4Search();
-		String userid="allen";//根据自己的需求填
-		List<Finance> finanlist=new ArrayList<Finance>();
-		finanlist=xs.xqj4All(userid);
+		XQJ4Search xs = new XQJ4Search();
+		String usrid = "allen";//根据自己的需求填
+		List<Finance> finanlist = new ArrayList<Finance>();
+		finanlist = xs.xqj4All(usrid);
+		String[][] data = new String[finanlist.size()][];
+		model = new DefaultTableModel(getDataArray(finanlist, data), columns);
+		jTable1.setModel(model);
 	}
 
 	private void serchButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		String financetype=(String) jComboBox2.getSelectedItem();
-		String type=(String) jComboBox3.getSelectedItem();
-		String keyword=keyWord.getText();
-		XQJ4Search xs=new XQJ4Search();
-		String userid="allen";//根据需求自己填
-		List<Finance> finanlist=new ArrayList<Finance>();
-		finanlist=xs.xqj4Selected(userid, financetype, type, keyword);
+		String financetype = (String) jComboBox2.getSelectedItem();
+		String type = (String) jComboBox3.getSelectedItem();
+		String keyword = keyWord.getText();
+		XQJ4Search xs = new XQJ4Search();
+		String userid = "allen";//根据需求自己填
+		List<Finance> finanlist = new ArrayList<Finance>();
+		finanlist = xs.xqj4Selected(userid, financetype, type, keyword);
+		String[][] data = new String[finanlist.size()][];
+		model = new DefaultTableModel(getDataArray(finanlist, data), columns);
+		jTable1.setModel(model);
 	}
 
 	/**
@@ -638,7 +640,6 @@ public class Main extends javax.swing.JFrame {
 	private javax.swing.JComboBox jComboBox3;
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel11;
-	private javax.swing.JLabel jLabel3;
 	private javax.swing.JLabel jLabel4;
 	private javax.swing.JLabel jLabel5;
 	private javax.swing.JLabel jLabel6;
@@ -656,9 +657,11 @@ public class Main extends javax.swing.JFrame {
 	private javax.swing.JLabel lastMoney;
 	private javax.swing.JLabel outcomeText;
 	private javax.swing.JButton serchButton;
-	private javax.swing.JComboBox serchType;
 	private javax.swing.JButton showAllDataButton;
 	private javax.swing.JLabel timeText;
+	
 	// End of variables declaration//GEN-END:variables
+	DefaultTableModel model=null;
+	private static final String[] columns={"编号","数目","账目类型","类型","时间","备注","用户编号"};
 
 }
