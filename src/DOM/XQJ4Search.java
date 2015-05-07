@@ -81,7 +81,7 @@ public class XQJ4Search {
 	
 	//main.frame  按照financetype,type,keyword搜索信息 函数
 	public static List<Finance> xqj4Selected(
-			String userid,String financetype,String type,String keyWord){
+			String userid,String financetype,String type,String keyword){
         List<Finance> list=new ArrayList<Finance>();
         XQDataSource ds = new SaxonXQDataSource();  
         try {  
@@ -91,43 +91,43 @@ public class XQJ4Search {
                     .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
                     		"where $finance/financetype='"+financetype
                     		+"' and $finance/type='"+type
-                    		+"' and contains(string($finance/remark),'keyword')"+
+                    		+"' and contains(string($finance/remark),'"+keyword+"')"+
                     		"return data($finance/id)");  
             XQPreparedExpression exp_num = conn  
             .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
             		"where $finance/financetype='"+financetype
             		+"' and $finance/type='"+type
-            		+"' and contains(string($finance/remark),'keyword')"+
+            		+"' and contains(string($finance/remark),'"+keyword+"')"+
             		"return data($finance/num)");
             XQPreparedExpression exp_financetype = conn  
             .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
             		"where $finance/financetype='"+financetype
             		+"' and $finance/type='"+type
-            		+"' and contains(string($finance/remark),'keyword')"+
+            		+"' and contains(string($finance/remark),'"+keyword+"')"+
             		"return data($finance/financetype)");
             XQPreparedExpression exp_type = conn  
             .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
             		"where $finance/financetype='"+financetype
             		+"' and $finance/type='"+type
-            		+"' and contains(string($finance/remark),'keyword')"+
+            		+"' and contains(string($finance/remark),'"+keyword+"')"+
             		"return data($finance/type)");
             XQPreparedExpression exp_spendingtime = conn  
             .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
             		"where $finance/financetype='"+financetype
             		+"' and $finance/type='"+type
-            		+"' and contains(string($finance/remark),'keyword')"+
+            		+"' and contains(string($finance/remark),'"+keyword+"')"+
             		"return data($finance/spendingtime)");
             XQPreparedExpression exp_remark = conn  
             .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
             		"where $finance/financetype='"+financetype
             		+"' and $finance/type='"+type
-            		+"' and contains(string($finance/remark),'keyword')"+
+            		+"' and contains(string($finance/remark),'"+keyword+"')"+
             		"return data($finance/remark)");
             XQPreparedExpression exp_userid = conn  
             .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
             		"where $finance/financetype='"+financetype
             		+"' and $finance/type='"+type
-            		+"' and contains(string($finance/remark),'keyword')"+
+            		+"' and contains(string($finance/remark),'"+keyword+"')"+
             		"return data($finance/userid)");
             XQResultSequence result_id = exp_id.executeQuery();
             XQResultSequence result_num = exp_num.executeQuery();
