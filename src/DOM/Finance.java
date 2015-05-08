@@ -9,6 +9,16 @@ public class Finance {
 	private String remark;
 	private int userid;
 	
+	public Finance(int id,int num,String financetype,String type,
+			String spendingtime,String remark,int userid){
+		this.id=id;
+		this.num=num;
+		this.financetype=financetype;
+		this.type=type;
+		this.spendingtime=spendingtime;
+		this.remark=remark;
+		this.userid=userid;
+	}
 	
 	public void setId(int id) {
 		this.id = id;

@@ -20,56 +20,20 @@ public class XQJ4Search {
         try {  
             XQConnection conn = ds.getConnection();  
             //查询全部信息
-            XQPreparedExpression exp_id = conn  
+            XQPreparedExpression exp = conn  
             		.prepareExpression("for $finance in doc('"+userid+".xml')" +
-                    		"/Finances/Finance return data($finance/id)");
-            XQPreparedExpression exp_num = conn  
-    				.prepareExpression("for $finance in doc('"+userid+".xml')" +
-            				"/Finances/Finance return data($finance/num)");
-            XQPreparedExpression exp_financetype = conn  
-    		.prepareExpression("for $finance in doc('"+userid+".xml')" +
-            		"/Finances/Finance return data($finance/financetype)");
-            XQPreparedExpression exp_type = conn  
-    		.prepareExpression("for $finance in doc('"+userid+".xml')" +
-            		"/Finances/Finance return data($finance/type)");
-            XQPreparedExpression exp_spendingtime = conn  
-    		.prepareExpression("for $finance in doc('"+userid+".xml')" +
-            		"/Finances/Finance return data($finance/spendingtime)");
-            XQPreparedExpression exp_remark = conn  
-    		.prepareExpression("for $finance in doc('"+userid+".xml')" +
-            		"/Finances/Finance return data($finance/remark)");
-            XQPreparedExpression exp_userid = conn  
-    		.prepareExpression("for $finance in doc('"+userid+".xml')" +
-            		"/Finances/Finance return data($finance/userid)");
-            XQResultSequence result_id = exp_id.executeQuery();
-            XQResultSequence result_num = exp_num.executeQuery();
-            XQResultSequence result_financetype = exp_financetype.executeQuery();
-            XQResultSequence result_type = exp_type.executeQuery();
-            XQResultSequence result_spendingtime = exp_spendingtime.executeQuery();
-            XQResultSequence result_remark = exp_remark.executeQuery();
-            XQResultSequence result_userid = exp_userid.executeQuery();
-            while (result_id.next()) {  
-            	result_num.next();
-            	result_financetype.next();
-            	result_type.next();
-            	result_spendingtime.next();
-            	result_remark.next();
-            	result_userid.next();
-                int id = Integer.parseInt(result_id.getItemAsString(null).trim());
-                int num= Integer.parseInt(result_num.getItemAsString(null).trim());
-                String financetype=result_financetype.getItemAsString(null).trim();
-                String type=result_type.getItemAsString(null).trim();
-                String spendingtime=result_spendingtime.getItemAsString(null).trim();
-                String remark=result_remark.getItemAsString(null).trim();
-                int usrid = Integer.parseInt(result_userid.getItemAsString(null).trim());
-                Finance finance=new Finance();
-                finance.setId(id);
-                finance.setNum(num);
-                finance.setFinancetype(financetype);
-                finance.setType(type);
-                finance.setSpendingtime(spendingtime);
-                finance.setRemark(remark);
-                finance.setUserid(usrid);
+                    		"/Finances/Finance return string($finance)");
+            XQResultSequence result = exp.executeQuery();
+            while (result.next()) {  
+                String rs=result.getItemAsString(null).trim();
+                String[] r=rs.split("\n");
+                for(int i=0;i<r.length;i++){
+                	String str=new String(r[i]);
+                	r[i]=str.replaceAll("\\s*","");
+                }
+                Finance finance=new Finance(Integer.parseInt(r[0]),
+                		Integer.parseInt(r[1]),r[2],r[3],r[4],r[5],
+                		Integer.parseInt(r[6]));
                 list.add(finance);
              }  
         } catch (XQException e) {  
@@ -92,72 +56,18 @@ public class XQJ4Search {
                     		"where $finance/financetype='"+financetype
                     		+"' and $finance/type='"+type
                     		+"' and contains(string($finance/remark),'"+keyword+"')"+
-                    		"return data($finance/id)");  
-            XQPreparedExpression exp_num = conn  
-            .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
-            		"where $finance/financetype='"+financetype
-            		+"' and $finance/type='"+type
-            		+"' and contains(string($finance/remark),'"+keyword+"')"+
-            		"return data($finance/num)");
-            XQPreparedExpression exp_financetype = conn  
-            .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
-            		"where $finance/financetype='"+financetype
-            		+"' and $finance/type='"+type
-            		+"' and contains(string($finance/remark),'"+keyword+"')"+
-            		"return data($finance/financetype)");
-            XQPreparedExpression exp_type = conn  
-            .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
-            		"where $finance/financetype='"+financetype
-            		+"' and $finance/type='"+type
-            		+"' and contains(string($finance/remark),'"+keyword+"')"+
-            		"return data($finance/type)");
-            XQPreparedExpression exp_spendingtime = conn  
-            .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
-            		"where $finance/financetype='"+financetype
-            		+"' and $finance/type='"+type
-            		+"' and contains(string($finance/remark),'"+keyword+"')"+
-            		"return data($finance/spendingtime)");
-            XQPreparedExpression exp_remark = conn  
-            .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
-            		"where $finance/financetype='"+financetype
-            		+"' and $finance/type='"+type
-            		+"' and contains(string($finance/remark),'"+keyword+"')"+
-            		"return data($finance/remark)");
-            XQPreparedExpression exp_userid = conn  
-            .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
-            		"where $finance/financetype='"+financetype
-            		+"' and $finance/type='"+type
-            		+"' and contains(string($finance/remark),'"+keyword+"')"+
-            		"return data($finance/userid)");
-            XQResultSequence result_id = exp_id.executeQuery();
-            XQResultSequence result_num = exp_num.executeQuery();
-            XQResultSequence result_financetype = exp_financetype.executeQuery();
-            XQResultSequence result_type = exp_type.executeQuery();
-            XQResultSequence result_spendingtime = exp_spendingtime.executeQuery();
-            XQResultSequence result_remark = exp_remark.executeQuery();
-            XQResultSequence result_userid = exp_userid.executeQuery();
-            while (result_id.next()) {  
-            	result_num.next();
-            	result_financetype.next();
-            	result_type.next();
-            	result_spendingtime.next();
-            	result_remark.next();
-            	result_userid.next();
-                int id = Integer.parseInt(result_id.getItemAsString(null).trim());
-                int num= Integer.parseInt(result_num.getItemAsString(null).trim());
-                String Financetype=result_financetype.getItemAsString(null).trim();
-                String Type=result_type.getItemAsString(null).trim();
-                String spendingtime=result_spendingtime.getItemAsString(null).trim();
-                String remark=result_remark.getItemAsString(null).trim();
-                int usrid = Integer.parseInt(result_userid.getItemAsString(null).trim());
-                Finance finance=new Finance();
-                finance.setId(id);
-                finance.setNum(num);
-                finance.setFinancetype(Financetype);
-                finance.setType(Type);
-                finance.setSpendingtime(spendingtime);
-                finance.setRemark(remark);
-                finance.setUserid(usrid);
+                    		"return string($finance)");  
+            XQResultSequence result = exp_id.executeQuery();
+            while (result.next()) {  
+                String rs=result.getItemAsString(null).trim();
+                String[] r=rs.split("\n");
+                for(int i=0;i<r.length;i++){
+                	String str=new String(r[i]);
+                	r[i]=str.replaceAll("\\s*","");
+                }
+                Finance finance=new Finance(Integer.parseInt(r[0]),
+                		Integer.parseInt(r[1]),r[2],r[3],r[4],r[5],
+                		Integer.parseInt(r[6]));
                 list.add(finance);
              }  
         } catch (XQException e) {  
