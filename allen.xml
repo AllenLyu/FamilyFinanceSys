@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Finances>
+	<Finance>
+		<id>1</id>
+		<num>20000</num>
+		<financetype>收入</financetype>
+		<type>工资</type>
+		<spendingtime>2015年05月04日</spendingtime>
+		<remark>工资</remark>
+		<userid>3</userid>
+	</Finance>
+	<Finance>
+		<id>1</id>
+		<num>20000</num>
+		<financetype>收入</financetype>
+		<type>工资</type>
+		<spendingtime>2015年05月04日</spendingtime>
+		<remark>工资</remark>
+		<userid>3</userid>
+	</Finance>
+	<Finance>
+		<id>1</id>
+		<num>20000</num>
+		<financetype>收入</financetype>
+		<type>工资</type>
+		<spendingtime>2015年05月04日</spendingtime>
+		<remark>工资</remark>
+		<userid>3</userid>
+	</Finance>
+</Finances>
