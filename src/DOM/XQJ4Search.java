@@ -51,13 +51,65 @@ public class XQJ4Search {
         try {  
             XQConnection conn = ds.getConnection();  
             //根据条件查询信息
-            XQPreparedExpression exp_id = conn  
-                    .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
-                    		"where $finance/financetype='"+financetype
-                    		+"' and $finance/type='"+type
-                    		+"' and contains(string($finance/remark),'"+keyword+"')"+
-                    		"return string($finance)");  
-            XQResultSequence result = exp_id.executeQuery();
+            XQPreparedExpression exp = null;
+            if(financetype==""){
+            	if(type==""){
+            		if(keyword==""){//EEE
+            			exp = conn  
+                		.prepareExpression("for $finance in doc('"+userid+".xml')" +
+                        		"/Finances/Finance return string($finance)");
+            		}else if(keyword!=""){//EEI
+            			exp = conn  
+                        .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
+                        		"where contains(string($finance/remark),'"+keyword+"')"+
+                        		"return string($finance)");
+            		}
+            	}else if(type!=""){
+            		if(keyword==""){//EIE
+            			exp = conn  
+                        .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
+                        		"where $finance/type='"+type+"'"+
+                        		"return string($finance)");
+            		}else if(keyword!=""){//EII
+            			exp = conn  
+                        .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
+                        		"where $finance/type='"+type+
+                        		"' and contains(string($finance/remark),'"+keyword+"')"+
+                        		"return string($finance)");
+            		}
+            	}
+            }else if(financetype!=""){
+            	if(type==""){
+            		if(keyword==""){//IEE
+            			exp = conn  
+                        .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
+                        		"where $finance/financetype='"+financetype+"'"+
+                        		"return string($finance)");
+            		}else if(keyword!=""){//IEI
+            			exp = conn  
+                        .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
+                        		"where $finance/financetype='"+financetype+
+                        		"' and contains(string($finance/remark),'"+keyword+"')"+
+                        		"return string($finance)");
+            		}
+            	}else if(type!=""){
+            		if(keyword==""){//IIE
+            			exp = conn  
+                        .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
+                        		"where $finance/financetype='"+financetype+
+                        		"' and $finance/type='"+type+
+                        		"' return string($finance)");
+            		}else if(keyword!=""){//III
+            			exp = conn  
+                        .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
+                        		"where $finance/financetype='"+financetype
+                        		+"' and $finance/type='"+type
+                        		+"' and contains(string($finance/remark),'"+keyword+"')"+
+                        		"return string($finance)");
+            		}
+            	}
+            }
+            XQResultSequence result = exp.executeQuery();
             while (result.next()) {  
                 String rs=result.getItemAsString(null).trim();
                 String[] r=rs.split("\n");
