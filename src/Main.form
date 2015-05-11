@@ -46,7 +46,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jPanel3" alignment="0" max="32767" attributes="1"/>
+                      <Component id="jPanel3" alignment="0" pref="111" max="32767" attributes="1"/>
                       <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -140,7 +140,7 @@
                       <Component id="addDataButton" alignment="0" pref="182" max="32767" attributes="1"/>
                       <Component id="deleteDataButton" alignment="0" pref="182" max="32767" attributes="0"/>
                       <Component id="fixDataButton" alignment="0" pref="182" max="32767" attributes="0"/>
-                      <Component id="compareButton" alignment="0" pref="182" max="32767" attributes="0"/>
+                      <Component id="saveButton" alignment="0" pref="182" max="32767" attributes="0"/>
                       <Component id="exitButton" alignment="0" pref="182" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -159,7 +159,7 @@
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="fixDataButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                  <Component id="compareButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="saveButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="exitButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
@@ -185,16 +185,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x5220;&#x9664;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteDataButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="fixDataButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x4fee;&#x6539;&#x6a21;&#x5f0f;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fixDataButtonActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="compareButton">
+        <Component class="javax.swing.JButton" name="saveButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x5bf9;&#x6bd4;"/>
+            <Property name="text" type="java.lang.String" value="&#x4fdd;&#x5b58;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="exitButton">
           <Properties>
@@ -284,11 +293,13 @@
         <Component class="javax.swing.JComboBox" name="jComboBox2">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="6">
+                <StringItem index="0" value=""/>
+                <StringItem index="1" value="&#x5de5;&#x8d44;"/>
+                <StringItem index="2" value="&#x5403;&#x996d;"/>
+                <StringItem index="3" value="&#x5a31;&#x4e50;"/>
+                <StringItem index="4" value="&#x6295;&#x8d44;"/>
+                <StringItem index="5" value="&#x5176;&#x4ed6;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -296,9 +307,10 @@
         <Component class="javax.swing.JComboBox" name="jComboBox3">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="&#x6536;&#x5165;"/>
-                <StringItem index="1" value="&#x652f;&#x51fa;"/>
+              <StringArray count="3">
+                <StringItem index="0" value=""/>
+                <StringItem index="1" value="&#x6536;&#x5165;"/>
+                <StringItem index="2" value="&#x652f;&#x51fa;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -401,6 +413,7 @@
                     <Column editable="true" title="Title 4" type="java.lang.Object"/>
                   </Table>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>

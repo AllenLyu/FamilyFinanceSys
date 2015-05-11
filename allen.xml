@@ -10,7 +10,7 @@
 		<userid>3</userid>
 	</Finance>
 	<Finance>
-		<id>1</id>
+		<id>2</id>
 		<num>20000</num>
 		<financetype>收入</financetype>
 		<type>工资</type>
@@ -19,12 +19,12 @@
 		<userid>3</userid>
 	</Finance>
 	<Finance>
-		<id>1</id>
+		<id>3</id>
 		<num>20000</num>
-		<financetype>收入</financetype>
-		<type>工资</type>
+		<financetype>工资</financetype>
+		<type>收入</type>
 		<spendingtime>2015年05月04日</spendingtime>
-		<remark>工资</remark>
+		<remark>fuck</remark>
 		<userid>3</userid>
 	</Finance>
 </Finances>

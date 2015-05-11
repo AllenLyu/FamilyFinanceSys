@@ -64,7 +64,7 @@ public class saveData {
 	            Document doc = db.parse("H:/students.xml");
 	 
 	            Node stNode = doc.getElementsByTagName("Users").item(0);
-	            System.out.println(stNode.getChildNodes().getLength());;
+	            System.out.println(stNode.getChildNodes().getLength());
 	            Element user = doc.createElement("User");
 	    		//step6:为该节点设定属性
 	    		user.setAttribute("id", stNode.getChildNodes().getLength()+1+"");

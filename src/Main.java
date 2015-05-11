@@ -1,10 +1,12 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.text.html.HTMLDocument.Iterator;
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -47,7 +49,7 @@ public class Main extends javax.swing.JFrame {
 		addDataButton = new javax.swing.JButton();
 		deleteDataButton = new javax.swing.JButton();
 		fixDataButton = new javax.swing.JButton();
-		compareButton = new javax.swing.JButton();
+		saveButton = new javax.swing.JButton();
 		exitButton = new javax.swing.JButton();
 		jPanel3 = new javax.swing.JPanel();
 		jLabel4 = new javax.swing.JLabel();
@@ -125,10 +127,25 @@ public class Main extends javax.swing.JFrame {
 		addDataButton.setText("\u6dfb\u52a0");
 
 		deleteDataButton.setText("\u5220\u9664");
+		deleteDataButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				deleteDataButtonActionPerformed(evt);
+			}
+		});
 
 		fixDataButton.setText("\u4fee\u6539\u6a21\u5f0f");
+		fixDataButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				fixDataButtonActionPerformed(evt);
+			}
+		});
 
-		compareButton.setText("\u5bf9\u6bd4");
+		saveButton.setText("\u4fdd\u5b58");
+		saveButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				saveButtonActionPerformed(evt);
+			}
+		});
 
 		exitButton.setText("\u9000\u51fa\u7cfb\u7edf");
 
@@ -169,7 +186,7 @@ public class Main extends javax.swing.JFrame {
 																182,
 																Short.MAX_VALUE)
 														.addComponent(
-																compareButton,
+																saveButton,
 																javax.swing.GroupLayout.DEFAULT_SIZE,
 																182,
 																Short.MAX_VALUE)
@@ -196,7 +213,7 @@ public class Main extends javax.swing.JFrame {
 												deleteDataButton).addGap(47,
 												47, 47).addComponent(
 												fixDataButton).addGap(48, 48,
-												48).addComponent(compareButton)
+												48).addComponent(saveButton)
 										.addGap(45, 45, 45).addComponent(
 												exitButton).addGap(66, 66, 66)));
 
@@ -210,10 +227,10 @@ public class Main extends javax.swing.JFrame {
 		jLabel6.setText("\u7c7b\u578b\uff1a");
 
 		jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"收入", "支出"}));
+				"", "工资", "吃饭", "娱乐", "投资", "其他" }));
 
 		jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"工资","娱乐","教育"}));
+				"", "收入", "支出" }));
 
 		serchButton.setText("\u641c\u7d22");
 		serchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -358,11 +375,13 @@ public class Main extends javax.swing.JFrame {
 
 		jPanel5.setBorder(javax.swing.BorderFactory
 				.createLineBorder(new java.awt.Color(0, 0, 0)));
-		
-		String[][] data={};
-		model=new DefaultTableModel(data,columns);
-		jTable1=new JTable(model);
-		
+
+		jTable1.setModel(new javax.swing.table.DefaultTableModel(
+				new Object[][] { { null, null, null, null },
+						{ null, null, null, null }, { null, null, null, null },
+						{ null, null, null, null } }, new String[] { "Title 1",
+						"Title 2", "Title 3", "Title 4" }));
+		jTable1.setEnabled(false);
 		jScrollPane1.setViewportView(jTable1);
 
 		javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(
@@ -575,11 +594,34 @@ public class Main extends javax.swing.JFrame {
 	}// </editor-fold>
 	//GEN-END:initComponents
 
-<<<<<<< HEAD
-	private void serchButtonActionPerformed(java.awt.event.ActionEvent evt) {
+	private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
-		System.out.println(jTable1.getValueAt(0, 0));
-=======
+		List<Finance> test = compare();
+		System.out.println(22);
+	}
+
+	private void deleteDataButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+		System.out.println(jTable1.getSelectedRow());
+		DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+		dtm.removeRow(0);
+		Vector we = null;
+		we.add(1);
+		dtm.addRow(we);
+	}
+
+	private void fixDataButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+		modifyMode = !modifyMode;
+		jTable1.setEnabled(modifyMode);
+
+	}
+
+	//<<<<<<< HEAD
+	//	private void serchButtonActionPerformed(java.awt.event.ActionEvent evt) {
+	//		// TODO add your handling code here:
+	//		System.out.println(jTable1.getValueAt(0, 0));
+	//=======
 	public String[][] getDataArray(List<Finance> finanlist, String[][] data) {
 		for (int j = 0; j < finanlist.size(); j++) {
 			int id = finanlist.get(j).getId();
@@ -618,9 +660,52 @@ public class Main extends javax.swing.JFrame {
 		String[][] data = new String[finanlist.size()][];
 		model = new DefaultTableModel(getDataArray(finanlist, data), columns);
 		jTable1.setModel(model);
->>>>>>> itas1994
+
+		//>>>>>>> itas1994
 	}
 
+	/*
+	 * 
+	 * 以下为获取函数
+	 */
+	private List<Finance> getData() {
+		List<Finance> out = new ArrayList<Finance>();
+		int row = jTable1.getRowCount();
+		int col = jTable1.getColumnCount();
+		for (int i = 0; i < row; i++) {
+			String r[] = new String[7];
+			for (int j = 0; j < col; j++) {
+				r[j] = (String) jTable1.getValueAt(i, j);
+			}
+			Finance finance = new Finance(Integer.parseInt(r[0]), Integer
+					.parseInt(r[1]), r[2], r[3], r[4], r[5], Integer
+					.parseInt(r[6]));
+			out.add(finance);
+		}
+		return out;
+	}
+	
+	private List<Finance> compare()
+	{
+		List<Finance> out = new ArrayList<Finance>();
+		List<Finance> midData = new ArrayList<Finance>();
+		out = XQJ4Search.xqj4All("allen");
+		midData = getData();
+		for (Finance finance : midData) {
+			int id = finance.getId();
+			for (int i = 0; i < out.size(); i++) {
+				if(out.get(i).getId()==id)
+				{
+					out.remove(i);
+				}
+			}
+		}
+		out.addAll(midData);
+		System.out.println(22);
+		return out;
+	}
+
+	//	private modi
 	/**
 	 * @param args the command line arguments
 	 */
@@ -635,7 +720,6 @@ public class Main extends javax.swing.JFrame {
 	//GEN-BEGIN:variables
 	// Variables declaration - do not modify
 	private javax.swing.JButton addDataButton;
-	private javax.swing.JButton compareButton;
 	private javax.swing.JButton deleteDataButton;
 	private javax.swing.JButton exitButton;
 	private javax.swing.JButton extUsrButton;
@@ -662,12 +746,13 @@ public class Main extends javax.swing.JFrame {
 	private javax.swing.JTextField keyWord;
 	private javax.swing.JLabel lastMoney;
 	private javax.swing.JLabel outcomeText;
+	private javax.swing.JButton saveButton;
 	private javax.swing.JButton serchButton;
 	private javax.swing.JButton showAllDataButton;
 	private javax.swing.JLabel timeText;
-	
 	// End of variables declaration//GEN-END:variables
-	DefaultTableModel model=null;
-	private static final String[] columns={"编号","数目","账目类型","类型","时间","备注","用户编号"};
-
+	DefaultTableModel model = null;
+	private static final String[] columns = { "编号", "数目", "账目类型", "类型", "时间",
+			"备注", "用户编号" };
+	private boolean modifyMode = false;
 }
