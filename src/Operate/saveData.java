@@ -20,6 +20,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
+import DOM.Finance;
 import DOM.User;
 public class saveData {
 
@@ -88,6 +89,62 @@ public class saveData {
 	            e.printStackTrace();
 	        }
 	}
+	    
+	    public void insertData(List<Finance> finanlist) {
+	    		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		    	try {
+		            DocumentBuilder db = dbf.newDocumentBuilder();
+		            Document doc = db.parse("D:/MyEclipse 8.5Workspace/FamilyFinanceSys/allen.xml");
+		            Node Finances = doc.getElementsByTagName("Finances").item(0);
+		            NodeList financeNodes = doc.getElementsByTagName("Finance");
+		            //删除Finances节点下原有的所有Finance节点
+		            for(int j=0;j<financeNodes.getLength();j++){
+		            	Node oldChild=financeNodes.item(j);
+		            	oldChild.getParentNode().removeChild(oldChild);
+		            }
+		            //将finanlist内的信息写入Finances节点下
+		            for(int i=0;i<finanlist.size();i++){
+			    		Finance finance=finanlist.get(i);
+			    		Element Finance = doc.createElement("Finance");
+			    		//添加Finance节点
+			    		Finances.appendChild(Finance);
+			    		//添加Finance子节点
+			    		Element id = doc.createElement("id");
+			    		Element num = doc.createElement("num");
+			    		Element financetype = doc.createElement("financetype");
+			    		Element type = doc.createElement("type");
+			    		Element spendingtime = doc.createElement("spendingtime");
+			    		Element remark = doc.createElement("remark");
+			    		Element userid = doc.createElement("userid");
+			    		//为节点设定文本内容
+			    		String id_content=finance.getId()+"";
+			    		String num_content=finance.getNum()+"";
+			    		String userid_content=finance.getUserid()+"";
+			    		id.setTextContent(id_content);
+			    		num.setTextContent(num_content);
+			    		financetype.setTextContent(finance.getFinancetype());
+			    		type.setTextContent(finance.getType());
+			    		spendingtime.setTextContent(finance.getSpendingtime());
+			    		remark.setTextContent(finance.getRemark());
+			    		userid.setTextContent(userid_content);
+			    		//添加到Finance节点下
+			    		Finance.appendChild(id);
+			    		Finance.appendChild(num);
+			    		Finance.appendChild(financetype);
+			    		Finance.appendChild(type);
+			    		Finance.appendChild(spendingtime);
+			    		Finance.appendChild(remark);
+			    		Finance.appendChild(userid);
+			    		//添加Finance节点到Finances节点下
+			    		Finances.appendChild(Finance);
+			    		doc2XmlFile(doc, "D:/MyEclipse 8.5Workspace/FamilyFinanceSys/allen.xml");
+		            }
+		        } catch (ParserConfigurationException e) {
+		            e.printStackTrace();
+		        } catch (SAXException e) {
+		            e.printStackTrace();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+	    }
 }
-
-
