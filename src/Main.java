@@ -14,6 +14,7 @@ import org.xml.sax.SAXException;
 
 import DOM.Finance;
 import DOM.XQJ4Search;
+import Operate.saveData;
 
 /*
  * Main.java
@@ -597,7 +598,7 @@ public class Main extends javax.swing.JFrame {
 	private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
 		List<Finance> test = compare();
-		System.out.println(22);
+		saveData.insertData(test);
 	}
 
 	private void deleteDataButtonActionPerformed(java.awt.event.ActionEvent evt) {

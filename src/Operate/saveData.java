@@ -58,7 +58,7 @@ public class saveData {
 	     * 
 	     * 
 	     */
-	    public void insertData(User in) {
+	    public static void  insertData(User in) {
 	    	DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 	    	try {
 	            DocumentBuilder db = dbf.newDocumentBuilder();
@@ -90,11 +90,11 @@ public class saveData {
 	        }
 	}
 	    
-	    public void insertData(List<Finance> finanlist) {
+	    public static void insertData(List<Finance> finanlist) {
 	    		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		    	try {
 		            DocumentBuilder db = dbf.newDocumentBuilder();
-		            Document doc = db.parse("D:/MyEclipse 8.5Workspace/FamilyFinanceSys/allen.xml");
+		            Document doc = db.parse("./allen.xml");
 		            Node Finances = doc.getElementsByTagName("Finances").item(0);
 		            NodeList financeNodes = doc.getElementsByTagName("Finance");
 		            //删除Finances节点下原有的所有Finance节点
@@ -117,15 +117,15 @@ public class saveData {
 			    		Element remark = doc.createElement("remark");
 			    		Element userid = doc.createElement("userid");
 			    		//为节点设定文本内容
-			    		String id_content=finance.getId()+"";
-			    		String num_content=finance.getNum()+"";
-			    		String userid_content=finance.getUserid()+"";
+			    		String id_content=finance.getId()+"\n";
+			    		String num_content=finance.getNum()+"\n";
+			    		String userid_content=finance.getUserid()+"\n";
 			    		id.setTextContent(id_content);
 			    		num.setTextContent(num_content);
-			    		financetype.setTextContent(finance.getFinancetype());
-			    		type.setTextContent(finance.getType());
-			    		spendingtime.setTextContent(finance.getSpendingtime());
-			    		remark.setTextContent(finance.getRemark());
+			    		financetype.setTextContent(finance.getFinancetype()+"\n");
+			    		type.setTextContent(finance.getType()+"\n");
+			    		spendingtime.setTextContent(finance.getSpendingtime()+"\n");
+			    		remark.setTextContent(finance.getRemark()+"\n");
 			    		userid.setTextContent(userid_content);
 			    		//添加到Finance节点下
 			    		Finance.appendChild(id);
@@ -137,7 +137,7 @@ public class saveData {
 			    		Finance.appendChild(userid);
 			    		//添加Finance节点到Finances节点下
 			    		Finances.appendChild(Finance);
-			    		doc2XmlFile(doc, "D:/MyEclipse 8.5Workspace/FamilyFinanceSys/allen.xml");
+			    		doc2XmlFile(doc, "./allen.xml");
 		            }
 		        } catch (ParserConfigurationException e) {
 		            e.printStackTrace();
