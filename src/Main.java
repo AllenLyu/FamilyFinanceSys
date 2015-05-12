@@ -14,6 +14,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import DOM.Finance;
+import DOM.GetTime;
 import DOM.XQJ4Search;
 import Operate.saveData;
 
@@ -30,10 +31,20 @@ import Operate.saveData;
 public class Main extends javax.swing.JFrame {
 
 	/** Creates new form Main */
-	public Main() {
+	public Main(String id) {
 		initComponents();
+		initVar(id);
+		
 	}
 
+	private void initVar(String id)
+	{
+		USRID = id;
+		test = XQJ4Search.xqj4All(USRID);
+		model = new DefaultTableModel(null, columns);
+		jTable1.setModel(model);
+		timeText.setText(GetTime.getTime());
+	}
 	/** This method is called from within the constructor to
 	 * initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is
@@ -624,12 +635,20 @@ public class Main extends javax.swing.JFrame {
 
 	private void deleteDataButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
-		System.out.println(jTable1.getSelectedRow());
+		int j = jTable1.getSelectedColumn();
+		int id= Integer.parseInt((String) jTable1.getValueAt(j, 0));
+		for (int i = 0; i < test.size(); i++) {
+			if (test.get(i).getId() == id) {
+				test.remove(i);
+			}
+		}
+		saveData.insertData(test);
+		
+		
+		
+		
 		DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-		dtm.removeRow(0);
-		Vector we = null;
-		we.add(1);
-		dtm.addRow(we);
+		dtm.removeRow(j);
 	}
 
 	private void fixDataButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -669,6 +688,7 @@ public class Main extends javax.swing.JFrame {
 		String[][] data = new String[finanlist.size()][];
 		model = new DefaultTableModel(getDataArray(finanlist, data), columns);
 		jTable1.setModel(model);
+		dataAll();
 	}
 
 	private void serchButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -710,7 +730,7 @@ public class Main extends javax.swing.JFrame {
 	private List<Finance> compare() {
 		List<Finance> out = new ArrayList<Finance>();
 		List<Finance> midData = new ArrayList<Finance>();
-		out = XQJ4Search.xqj4All("allen");
+		out = test;
 		midData = getData();
 		for (Finance finance : midData) {
 			int id = finance.getId();
@@ -725,17 +745,33 @@ public class Main extends javax.swing.JFrame {
 		return out;
 	}
 
-	//	private modi
+		private void dataAll()
+		{
+			int in = 0;
+			int out = 0;
+			for (int i = 0; i < jTable1.getRowCount(); i++) {
+				if(((String)jTable1.getValueAt(i, 3)).equals("收入"))
+				{
+					in+=Integer.parseInt((String)jTable1.getValueAt(i, 1));
+				}
+				else{
+					out+=Integer.parseInt((String)jTable1.getValueAt(i, 1));
+				}
+			}
+			incomeText.setText(in+"");
+			outcomeText.setText(out+"");
+			lastMoney.setText((in-out)+"");
+		}
 	/**
 	 * @param args the command line arguments
 	 */
-	public static void main(String args[]) {
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new Main().setVisible(true);
-			}
-		});
-	}
+//	public static void main(String args[]) {
+//		java.awt.EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				new Main().setVisible(true);
+//			}
+//		});
+//	}
 
 	//GEN-BEGIN:variables
 	// Variables declaration - do not modify
@@ -775,4 +811,13 @@ public class Main extends javax.swing.JFrame {
 	private static final String[] columns = { "编号", "数目", "账目类型", "类型", "时间",
 			"备注", "用户编号" };
 	private boolean modifyMode = false;
+	private List<Finance> test;
+	private String USRID;
+	public String getUSRID() {
+		return USRID;
+	}
+
+	public void setUSRID(String uSRID) {
+		USRID = uSRID;
+	}
 }

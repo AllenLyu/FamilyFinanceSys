@@ -1,6 +1,8 @@
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import DOM.DOM4User;
 import DOM.User;
@@ -162,8 +164,8 @@ public class Login extends javax.swing.JFrame {
 
 	private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
 		// TODO add your handling code here:
-		List<User> list = DOM4User.getUsers("H:/students.xml");
-		String name = username.getText();
+		List<User> list = DOM4User.getUsers("./students.xml");
+		name = username.getText();
 		String pwd = password.getText().hashCode()+"";
 		boolean flag = false;
 		for (int i = 0; i < list.size(); i++) {
@@ -172,7 +174,7 @@ public class Login extends javax.swing.JFrame {
 				String interPwd = list.get(i).getPwd();
 				if(pwd.equalsIgnoreCase(interPwd))
 				{
-					Main main = new Main();
+					Main main = new Main(name);
 					main.setVisible(true);
 					flag = true;
 					break;
@@ -197,6 +199,21 @@ public class Login extends javax.swing.JFrame {
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				try {
+					UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UnsupportedLookAndFeelException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}  
 				new Login().setVisible(true);
 			}
 		});
@@ -211,5 +228,6 @@ public class Login extends javax.swing.JFrame {
 	private javax.swing.JButton registerButton;
 	private javax.swing.JTextField username;
 	// End of variables declaration//GEN-END:variables
+	private String name;
 
 }

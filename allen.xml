@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?><Finances>
 	
 
-<Finance><id>3
-</id><num>123
-</num><financetype>w
-</financetype><type>w
-</type><spendingtime>w
-</spendingtime><remark>w
-</remark><userid>3
-</userid></Finance><Finance><id>4
+<Finance><id>1
 </id><num>2
-</num><financetype>r
-</financetype><type>r
-</type><spendingtime>r
-</spendingtime><remark>r
-</remark><userid>3
+</num><financetype>2
+</financetype><type>2
+</type><spendingtime>2
+</spendingtime><remark>2
+</remark><userid>2
 </userid></Finance><Finance><id>5
-</id><num>1245
-</num><financetype>e
-</financetype><type>e
-</type><spendingtime>e
-</spendingtime><remark>e
-</remark><userid>3
+</id><num>5
+</num><financetype>5
+</financetype><type>5
+</type><spendingtime>5
+</spendingtime><remark>5
+</remark><userid>5
 </userid></Finance></Finances>

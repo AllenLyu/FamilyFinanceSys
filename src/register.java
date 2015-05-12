@@ -222,6 +222,7 @@ public class register extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(null, "两次密码不一致，重输入", "提示",
 					JOptionPane.PLAIN_MESSAGE);
 		}
+		this.setVisible(false);
 	}
 
 	/**
