@@ -102,6 +102,11 @@ public class saveData {
 		            	Node oldChild=financeNodes.item(j);
 		            	oldChild.getParentNode().removeChild(oldChild);
 		            }
+		            NodeList financeNodes_1= doc.getElementsByTagName("Finance");
+		            for(int k=0;k<financeNodes_1.getLength();k++){
+		            	Node oldChild=financeNodes_1.item(k);
+		            	oldChild.getParentNode().removeChild(oldChild);
+		            }
 		            //将finanlist内的信息写入Finances节点下
 		            for(int i=0;i<finanlist.size();i++){
 			    		Finance finance=finanlist.get(i);

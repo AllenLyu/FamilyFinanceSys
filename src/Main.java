@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -126,6 +127,11 @@ public class Main extends javax.swing.JFrame {
 				});
 
 		addDataButton.setText("\u6dfb\u52a0");
+		addDataButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				addDataButtonActionPerformed(evt);
+			}
+		});
 
 		deleteDataButton.setText("\u5220\u9664");
 		deleteDataButton.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +155,11 @@ public class Main extends javax.swing.JFrame {
 		});
 
 		exitButton.setText("\u9000\u51fa\u7cfb\u7edf");
+		exitButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				exitButtonActionPerformed(evt);
+			}
+		});
 
 		javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(
 				jPanel2);
@@ -544,7 +555,7 @@ public class Main extends javax.swing.JFrame {
 																				jPanel3,
 																				javax.swing.GroupLayout.Alignment.LEADING,
 																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																				111,
+																				javax.swing.GroupLayout.DEFAULT_SIZE,
 																				Short.MAX_VALUE)
 																		.addComponent(
 																				jPanel1,
@@ -594,6 +605,16 @@ public class Main extends javax.swing.JFrame {
 		pack();
 	}// </editor-fold>
 	//GEN-END:initComponents
+
+	private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+		System.exit(0);
+	}
+
+	private void addDataButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+		model.addRow(new String[7][]);
+	}
 
 	private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
@@ -685,9 +706,8 @@ public class Main extends javax.swing.JFrame {
 		}
 		return out;
 	}
-	
-	private List<Finance> compare()
-	{
+
+	private List<Finance> compare() {
 		List<Finance> out = new ArrayList<Finance>();
 		List<Finance> midData = new ArrayList<Finance>();
 		out = XQJ4Search.xqj4All("allen");
@@ -695,8 +715,7 @@ public class Main extends javax.swing.JFrame {
 		for (Finance finance : midData) {
 			int id = finance.getId();
 			for (int i = 0; i < out.size(); i++) {
-				if(out.get(i).getId()==id)
-				{
+				if (out.get(i).getId() == id) {
 					out.remove(i);
 				}
 			}

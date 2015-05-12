@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?><Finances>
 	
 
-<Finance><id>1
-</id><num>3124
-</num><financetype>收入
-</financetype><type>工资
-</type><spendingtime>2015年05月04日
-</spendingtime><remark>工资
+<Finance><id>3
+</id><num>123
+</num><financetype>w
+</financetype><type>w
+</type><spendingtime>w
+</spendingtime><remark>w
 </remark><userid>3
-</userid></Finance><Finance><id>2
-</id><num>20000
-</num><financetype>收入
-</financetype><type>工资
-</type><spendingtime>2015年05月04日
-</spendingtime><remark>工资
+</userid></Finance><Finance><id>4
+</id><num>2
+</num><financetype>r
+</financetype><type>r
+</type><spendingtime>r
+</spendingtime><remark>r
 </remark><userid>3
-</userid></Finance><Finance><id>3
-</id><num>2000342340
-</num><financetype>收入
-</financetype><type>工资
-</type><spendingtime>2015年05月04日
-</spendingtime><remark>工资
+</userid></Finance><Finance><id>5
+</id><num>1245
+</num><financetype>e
+</financetype><type>e
+</type><spendingtime>e
+</spendingtime><remark>e
 </remark><userid>3
 </userid></Finance></Finances>
