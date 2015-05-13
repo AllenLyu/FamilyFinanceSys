@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="lib/saxon-dom-9.x.jar"/>
 	<classpathentry kind="lib" path="lib/saxon-xpath-9.x.jar"/>
 	<classpathentry kind="lib" path="lib/saxon-xqj-9.x.jar"/>
+	<classpathentry kind="lib" path="lib/beautyeye_lnf.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
