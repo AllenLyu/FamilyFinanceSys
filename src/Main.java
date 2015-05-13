@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -31,25 +33,27 @@ public class Main extends javax.swing.JFrame {
 	 * @throws SAXException 
 	 * @throws TransformerException 
 	 * @throws ParserConfigurationException */
-	public Main(String id) throws ParserConfigurationException, TransformerException, SAXException, IOException {
+	public Main(String id) throws ParserConfigurationException,
+			TransformerException, SAXException, IOException {
 		initComponents();
-		
-		File usr = new File("./"+id+".xml");
-		if(!usr.exists())
-		{
+
+		File usr = new File("./" + id + ".xml");
+		if (!usr.exists()) {
 			newXML.creatNewXml(id);
 		}
 		initVar(id);
+		refreshTime re = new refreshTime();
+		re.start();
 	}
 
-	private void initVar(String id)
-	{
+	private void initVar(String id) {
 		USRID = id;
 		test = XQJ4Search.xqj4All(USRID);
 		model = new DefaultTableModel(null, columns);
 		jTable1.setModel(model);
 		timeText.setText(GetTime.getTime());
 	}
+
 	/** This method is called from within the constructor to
 	 * initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is
@@ -110,13 +114,13 @@ public class Main extends javax.swing.JFrame {
 								javax.swing.GroupLayout.Alignment.LEADING)
 								.addGroup(
 										jPanel1Layout.createSequentialGroup()
-												.addGap(77, 77, 77)
-												.addComponent(jLabel1))
+												.addGap(60, 60, 60)
+												.addComponent(timeText))
 								.addGroup(
 										jPanel1Layout.createSequentialGroup()
-												.addGap(47, 47, 47)
-												.addComponent(timeText)))
-						.addContainerGap(89, Short.MAX_VALUE)));
+												.addGap(87, 87, 87)
+												.addComponent(jLabel1)))
+						.addContainerGap(76, Short.MAX_VALUE)));
 		jPanel1Layout
 				.setVerticalGroup(jPanel1Layout
 						.createParallelGroup(
@@ -124,12 +128,12 @@ public class Main extends javax.swing.JFrame {
 						.addGroup(
 								jPanel1Layout
 										.createSequentialGroup()
-										.addContainerGap()
+										.addGap(35, 35, 35)
 										.addComponent(jLabel1)
 										.addPreferredGap(
 												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 										.addComponent(timeText)
-										.addContainerGap(53, Short.MAX_VALUE)));
+										.addContainerGap(32, Short.MAX_VALUE)));
 
 		jPanel2.setBorder(javax.swing.BorderFactory
 				.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -143,11 +147,6 @@ public class Main extends javax.swing.JFrame {
 				});
 
 		addDataButton.setText("\u6dfb\u52a0");
-		addDataButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				addDataButtonActionPerformed(evt);
-			}
-		});
 
 		deleteDataButton.setText("\u5220\u9664");
 		deleteDataButton.addActionListener(new java.awt.event.ActionListener() {
@@ -171,11 +170,6 @@ public class Main extends javax.swing.JFrame {
 		});
 
 		exitButton.setText("\u9000\u51fa\u7cfb\u7edf");
-		exitButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				exitButtonActionPerformed(evt);
-			}
-		});
 
 		javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(
 				jPanel2);
@@ -235,7 +229,7 @@ public class Main extends javax.swing.JFrame {
 										.addComponent(showAllDataButton)
 										.addPreferredGap(
 												javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-												57, Short.MAX_VALUE)
+												31, Short.MAX_VALUE)
 										.addComponent(addDataButton).addGap(49,
 												49, 49).addComponent(
 												deleteDataButton).addGap(47,
@@ -421,23 +415,23 @@ public class Main extends javax.swing.JFrame {
 				Short.MAX_VALUE));
 		jPanel5Layout.setVerticalGroup(jPanel5Layout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
-				jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 444,
-				Short.MAX_VALUE));
+				jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386,
+				javax.swing.GroupLayout.PREFERRED_SIZE));
 
 		jPanel6.setBorder(javax.swing.BorderFactory
 				.createLineBorder(new java.awt.Color(0, 0, 0)));
 
 		jLabel7.setText("\u6536\u5165\uff1a");
 
-		incomeText.setText("xxxxx");
+		incomeText.setText("0");
 
 		jLabel9.setText("\u652f\u51fa\uff1a");
 
-		outcomeText.setText("xxxxxx");
+		outcomeText.setText("0");
 
 		jLabel11.setText("\u5269\u4f59\u91d1\u989d\uff1a");
 
-		lastMoney.setText("xxxxx");
+		lastMoney.setText("0");
 
 		javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(
 				jPanel6);
@@ -449,7 +443,7 @@ public class Main extends javax.swing.JFrame {
 						.addGroup(
 								jPanel6Layout
 										.createSequentialGroup()
-										.addContainerGap()
+										.addGap(79, 79, 79)
 										.addComponent(jLabel7)
 										.addPreferredGap(
 												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -464,7 +458,7 @@ public class Main extends javax.swing.JFrame {
 										.addPreferredGap(
 												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 										.addComponent(lastMoney)
-										.addContainerGap(154, Short.MAX_VALUE)));
+										.addContainerGap(162, Short.MAX_VALUE)));
 		jPanel6Layout
 				.setVerticalGroup(jPanel6Layout
 						.createParallelGroup(
@@ -472,7 +466,7 @@ public class Main extends javax.swing.JFrame {
 						.addGroup(
 								jPanel6Layout
 										.createSequentialGroup()
-										.addContainerGap()
+										.addGap(46, 46, 46)
 										.addGroup(
 												jPanel6Layout
 														.createParallelGroup(
@@ -483,8 +477,8 @@ public class Main extends javax.swing.JFrame {
 														.addComponent(jLabel9)
 														.addComponent(
 																outcomeText)
-														.addComponent(jLabel11)
-														.addComponent(lastMoney))
+														.addComponent(lastMoney)
+														.addComponent(jLabel11))
 										.addContainerGap(
 												javax.swing.GroupLayout.DEFAULT_SIZE,
 												Short.MAX_VALUE)));
@@ -522,8 +516,19 @@ public class Main extends javax.swing.JFrame {
 										.addGroup(
 												layout
 														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.LEADING)
+																javax.swing.GroupLayout.Alignment.TRAILING)
+														.addComponent(
+																jPanel6,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																Short.MAX_VALUE)
+														.addComponent(
+																jPanel5,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																Short.MAX_VALUE)
 														.addGroup(
+																javax.swing.GroupLayout.Alignment.LEADING,
 																layout
 																		.createSequentialGroup()
 																		.addComponent(
@@ -537,18 +542,7 @@ public class Main extends javax.swing.JFrame {
 																				jPanel4,
 																				javax.swing.GroupLayout.PREFERRED_SIZE,
 																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																				javax.swing.GroupLayout.PREFERRED_SIZE))
-														.addComponent(
-																jPanel5,
-																javax.swing.GroupLayout.Alignment.TRAILING,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE)
-														.addComponent(
-																jPanel6,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE))
+																				javax.swing.GroupLayout.PREFERRED_SIZE)))
 										.addContainerGap()));
 		layout
 				.setVerticalGroup(layout
@@ -571,7 +565,7 @@ public class Main extends javax.swing.JFrame {
 																				jPanel3,
 																				javax.swing.GroupLayout.Alignment.LEADING,
 																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																				javax.swing.GroupLayout.DEFAULT_SIZE,
+																				111,
 																				Short.MAX_VALUE)
 																		.addComponent(
 																				jPanel1,
@@ -635,23 +629,20 @@ public class Main extends javax.swing.JFrame {
 	private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
 		List<Finance> test = compare();
-		saveData.insertData(test,USRID);
+		saveData.insertData(test, USRID);
 	}
 
 	private void deleteDataButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
-		int j = jTable1.getSelectedColumn()+1;
-		int id= Integer.parseInt((String) jTable1.getValueAt(j, 0));
+		int j = jTable1.getSelectedColumn() + 1;
+		int id = Integer.parseInt((String) jTable1.getValueAt(j, 0));
 		for (int i = 0; i < test.size(); i++) {
 			if (test.get(i).getId() == id) {
 				test.remove(i);
 			}
 		}
-		saveData.insertData(test,USRID);
-		
-		
-		
-		
+		saveData.insertData(test, USRID);
+
 		DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
 		dtm.removeRow(j);
 	}
@@ -750,33 +741,31 @@ public class Main extends javax.swing.JFrame {
 		return out;
 	}
 
-		private void dataAll()
-		{
-			int in = 0;
-			int out = 0;
-			for (int i = 0; i < jTable1.getRowCount(); i++) {
-				if(((String)jTable1.getValueAt(i, 3)).equals("收入"))
-				{
-					in+=Integer.parseInt((String)jTable1.getValueAt(i, 1));
-				}
-				else{
-					out+=Integer.parseInt((String)jTable1.getValueAt(i, 1));
-				}
+	private void dataAll() {
+		int in = 0;
+		int out = 0;
+		for (int i = 0; i < jTable1.getRowCount(); i++) {
+			if (((String) jTable1.getValueAt(i, 3)).equals("收入")) {
+				in += Integer.parseInt((String) jTable1.getValueAt(i, 1));
+			} else {
+				out += Integer.parseInt((String) jTable1.getValueAt(i, 1));
 			}
-			incomeText.setText(in+"");
-			outcomeText.setText(out+"");
-			lastMoney.setText((in-out)+"");
 		}
+		incomeText.setText(in + "");
+		outcomeText.setText(out + "");
+		lastMoney.setText((in - out) + "");
+	}
+
 	/**
 	 * @param args the command line arguments
 	 */
-//	public static void main(String args[]) {
-//		java.awt.EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				new Main().setVisible(true);
-//			}
-//		});
-//	}
+	//	public static void main(String args[]) {
+	//		java.awt.EventQueue.invokeLater(new Runnable() {
+	//			public void run() {
+	//				new Main().setVisible(true);
+	//			}
+	//		});
+	//	}
 
 	//GEN-BEGIN:variables
 	// Variables declaration - do not modify
@@ -818,11 +807,26 @@ public class Main extends javax.swing.JFrame {
 	private boolean modifyMode = false;
 	private List<Finance> test;
 	private String USRID;
+
 	public String getUSRID() {
 		return USRID;
 	}
 
 	public void setUSRID(String uSRID) {
 		USRID = uSRID;
+	}
+
+	class refreshTime extends Thread {
+		public void run() {
+			while (true) {
+				String time = GetTime.getTime();
+				timeText.setText(time);
+				try {
+					this.sleep(1000);
+				} catch (InterruptedException e) {
+					JOptionPane.showMessageDialog(null, "线程中断");
+				}
+			}
+		}
 	}
 }

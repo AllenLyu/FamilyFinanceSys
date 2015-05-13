@@ -4,7 +4,12 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.FrameBorderStyle;
+
+
 import DOM.DOM4User;
+import DOM.GetTime;
 import DOM.User;
 
 /*
@@ -199,20 +204,12 @@ public class Login extends javax.swing.JFrame {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UIManager
-							.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (InstantiationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (UnsupportedLookAndFeelException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+//					UIManager
+//							.setLookAndFeel("org.jb2011.lnf.beautyeye.BeautyEyeLookAndFeelWin");
+					BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.generalNoTranslucencyShadow;
+					BeautyEyeLNFHelper.launchBeautyEyeLNF();
+				} catch (Exception e) {
+					// TODO: handle exception
 				}
 				new Login().setVisible(true);
 			}
@@ -229,5 +226,6 @@ public class Login extends javax.swing.JFrame {
 	private javax.swing.JTextField username;
 	// End of variables declaration//GEN-END:variables
 	private String name;
+	
 
 }
