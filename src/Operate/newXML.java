@@ -22,7 +22,7 @@ import DOM.Finance;
 
 public class newXML {
 		public static void creatNewXml(String userid) throws ParserConfigurationException, TransformerException, SAXException, IOException{
-			String filepath="D:/MyEclipse 8.5Workspace/FamilyFinanceSys/"+userid+".txt";
+			String filepath="./"+userid+".xml";
 			DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder=factory.newDocumentBuilder();
 			Document doc=builder.newDocument();

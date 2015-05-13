@@ -39,8 +39,6 @@ public class register extends javax.swing.JFrame {
 		yesButton = new javax.swing.JButton();
 		resetButton = new javax.swing.JButton();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
 		userName.setText("\u7528\u6237\u540d\uff1a");
 
 		password.setText("\u5bc6\u7801\uff1a");
@@ -218,11 +216,12 @@ public class register extends javax.swing.JFrame {
 					JOptionPane.PLAIN_MESSAGE);
 			User in = new User(name, pwd, GetTime.getTime());
 			DOM4User.insertUser(in);
+
+			this.setVisible(false);
 		} else {
 			JOptionPane.showMessageDialog(null, "两次密码不一致，重输入", "提示",
 					JOptionPane.PLAIN_MESSAGE);
 		}
-		this.setVisible(false);
 	}
 
 	/**

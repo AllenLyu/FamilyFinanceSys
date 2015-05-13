@@ -162,18 +162,17 @@ public class Login extends javax.swing.JFrame {
 	}// </editor-fold>
 	//GEN-END:initComponents
 
-	private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
+	private void loginButtonActionPerformed(java.awt.event.ActionEvent evt)
+			throws Exception {
 		// TODO add your handling code here:
 		List<User> list = DOM4User.getUsers("./students.xml");
 		name = username.getText();
-		String pwd = password.getText().hashCode()+"";
+		String pwd = password.getText().hashCode() + "";
 		boolean flag = false;
 		for (int i = 0; i < list.size(); i++) {
-			if(name.equals(list.get(i).getName()))
-			{
+			if (name.equals(list.get(i).getName())) {
 				String interPwd = list.get(i).getPwd();
-				if(pwd.equalsIgnoreCase(interPwd))
-				{
+				if (pwd.equalsIgnoreCase(interPwd)) {
 					Main main = new Main(name);
 					main.setVisible(true);
 					flag = true;
@@ -181,9 +180,9 @@ public class Login extends javax.swing.JFrame {
 				}
 			}
 		}
-		if(!flag)
-		{
-			JOptionPane.showMessageDialog(null,  "用户名密码错误，从新输入","警告", JOptionPane.PLAIN_MESSAGE);
+		if (!flag) {
+			JOptionPane.showMessageDialog(null, "用户名密码错误，从新输入", "警告",
+					JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 
@@ -200,7 +199,8 @@ public class Login extends javax.swing.JFrame {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+					UIManager
+							.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -213,7 +213,7 @@ public class Login extends javax.swing.JFrame {
 				} catch (UnsupportedLookAndFeelException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}  
+				}
 				new Login().setVisible(true);
 			}
 		});

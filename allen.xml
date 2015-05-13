@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?><Finances>
 	
 
+
+
+
 <Finance><id>1
-</id><num>2
-</num><financetype>2
-</financetype><type>2
-</type><spendingtime>2
-</spendingtime><remark>2
-</remark><userid>2
-</userid></Finance><Finance><id>5
-</id><num>5
-</num><financetype>5
-</financetype><type>5
-</type><spendingtime>5
-</spendingtime><remark>5
-</remark><userid>5
+</id><num>200000
+</num><financetype>彩票
+</financetype><type>收入
+</type><spendingtime>5-13
+</spendingtime><remark>买彩票中了20万
+</remark><userid>1
+</userid></Finance><Finance><id>2
+</id><num>3
+</num><financetype>买菜
+</financetype><type>支出
+</type><spendingtime>5-13
+</spendingtime><remark>买了两斤黄瓜
+</remark><userid>1
 </userid></Finance></Finances>

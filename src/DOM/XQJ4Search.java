@@ -52,25 +52,26 @@ public class XQJ4Search {
             XQConnection conn = ds.getConnection();  
             //根据条件查询信息
             XQPreparedExpression exp = null;
-            if(financetype==""){
-            	if(type==""){
-            		if(keyword==""){//EEE
+            if(financetype.equalsIgnoreCase("")){
+            	if(type.equalsIgnoreCase("")){
+            		if(keyword.equalsIgnoreCase("")){//EEE
             			exp = conn  
                 		.prepareExpression("for $finance in doc('"+userid+".xml')" +
                         		"/Finances/Finance return string($finance)");
-            		}else if(keyword!=""){//EEI
+            		}else if(!keyword.equalsIgnoreCase("")){//EEI
             			exp = conn  
                         .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
                         		"where contains(string($finance/remark),'"+keyword+"')"+
                         		"return string($finance)");
             		}
-            	}else if(type!=""){
-            		if(keyword==""){//EIE
+            	}else if(!type.equalsIgnoreCase("")){
+            		if(keyword.equalsIgnoreCase("")){//EIE
             			exp = conn  
                         .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
-                        		"where $finance/type='"+type+"'"+
+                        		"where contains(string($finance/type),'"+type+"')"+
                         		"return string($finance)");
-            		}else if(keyword!=""){//EII
+            			System.out.println("bitch");
+            		}else if(!keyword.equalsIgnoreCase("")){//EII
             			exp = conn  
                         .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
                         		"where $finance/type='"+type+
@@ -78,28 +79,28 @@ public class XQJ4Search {
                         		"return string($finance)");
             		}
             	}
-            }else if(financetype!=""){
-            	if(type==""){
-            		if(keyword==""){//IEE
+            }else if(!financetype.equalsIgnoreCase("")){
+            	if(type.equalsIgnoreCase("")){
+            		if(keyword.equalsIgnoreCase("")){//IEE
             			exp = conn  
                         .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
                         		"where $finance/financetype='"+financetype+"'"+
                         		"return string($finance)");
-            		}else if(keyword!=""){//IEI
+            		}else if(!keyword.equalsIgnoreCase("")){//IEI
             			exp = conn  
                         .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
                         		"where $finance/financetype='"+financetype+
                         		"' and contains(string($finance/remark),'"+keyword+"')"+
                         		"return string($finance)");
             		}
-            	}else if(type!=""){
-            		if(keyword==""){//IIE
+            	}else if(!type.equalsIgnoreCase("")){
+            		if(keyword.equalsIgnoreCase("")){//IIE
             			exp = conn  
                         .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
                         		"where $finance/financetype='"+financetype+
                         		"' and $finance/type='"+type+
                         		"' return string($finance)");
-            		}else if(keyword!=""){//III
+            		}else if(!keyword.equalsIgnoreCase("")){//III
             			exp = conn  
                         .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
                         		"where $finance/financetype='"+financetype

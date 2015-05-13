@@ -62,7 +62,7 @@ public class saveData {
 	    	DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 	    	try {
 	            DocumentBuilder db = dbf.newDocumentBuilder();
-	            Document doc = db.parse("H:/students.xml");
+	            Document doc = db.parse("./students.xml");
 	 
 	            Node stNode = doc.getElementsByTagName("Users").item(0);
 	            System.out.println(stNode.getChildNodes().getLength());
@@ -80,7 +80,7 @@ public class saveData {
 	    		user.appendChild(pwd);
 	    		user.appendChild(time);
 	    		stNode.appendChild(user);
-	            doc2XmlFile(doc, "H:/students.xml");
+	            doc2XmlFile(doc, "./students.xml");
 	        } catch (ParserConfigurationException e) {
 	            e.printStackTrace();
 	        } catch (SAXException e) {
@@ -90,11 +90,11 @@ public class saveData {
 	        }
 	}
 	    
-	    public static void insertData(List<Finance> finanlist) {
+	    public static void insertData(List<Finance> finanlist,String uid) {
 	    		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		    	try {
 		            DocumentBuilder db = dbf.newDocumentBuilder();
-		            Document doc = db.parse("./allen.xml");
+		            Document doc = db.parse("./"+uid+".xml");
 		            Node Finances = doc.getElementsByTagName("Finances").item(0);
 		            NodeList financeNodes = doc.getElementsByTagName("Finance");
 		            //删除Finances节点下原有的所有Finance节点
@@ -142,7 +142,7 @@ public class saveData {
 			    		Finance.appendChild(userid);
 			    		//添加Finance节点到Finances节点下
 			    		Finances.appendChild(Finance);
-			    		doc2XmlFile(doc, "./allen.xml");
+			    		doc2XmlFile(doc, "./"+uid+".xml");
 		            }
 		        } catch (ParserConfigurationException e) {
 		            e.printStackTrace();

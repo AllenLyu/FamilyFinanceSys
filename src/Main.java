@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +11,14 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.text.html.HTMLDocument.Iterator;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import org.xml.sax.SAXException;
 
 import DOM.Finance;
 import DOM.GetTime;
 import DOM.XQJ4Search;
+import Operate.newXML;
 import Operate.saveData;
 
 /*
@@ -30,11 +33,20 @@ import Operate.saveData;
  */
 public class Main extends javax.swing.JFrame {
 
-	/** Creates new form Main */
-	public Main(String id) {
+	/** Creates new form Main 
+	 * @throws IOException 
+	 * @throws SAXException 
+	 * @throws TransformerException 
+	 * @throws ParserConfigurationException */
+	public Main(String id) throws ParserConfigurationException, TransformerException, SAXException, IOException {
 		initComponents();
-		initVar(id);
 		
+		File usr = new File("./"+id+".xml");
+		if(!usr.exists())
+		{
+			newXML.creatNewXml(id);
+		}
+		initVar(id);
 	}
 
 	private void initVar(String id)
@@ -630,19 +642,19 @@ public class Main extends javax.swing.JFrame {
 	private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
 		List<Finance> test = compare();
-		saveData.insertData(test);
+		saveData.insertData(test,USRID);
 	}
 
 	private void deleteDataButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
-		int j = jTable1.getSelectedColumn();
+		int j = jTable1.getSelectedColumn()+1;
 		int id= Integer.parseInt((String) jTable1.getValueAt(j, 0));
 		for (int i = 0; i < test.size(); i++) {
 			if (test.get(i).getId() == id) {
 				test.remove(i);
 			}
 		}
-		saveData.insertData(test);
+		saveData.insertData(test,USRID);
 		
 		
 		
@@ -682,9 +694,9 @@ public class Main extends javax.swing.JFrame {
 
 	private void showAllDataButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		XQJ4Search xs = new XQJ4Search();
-		String usrid = "allen";//根据自己的需求填
+		//String usrid = "allen";//根据自己的需求填
 		List<Finance> finanlist = new ArrayList<Finance>();
-		finanlist = xs.xqj4All(usrid);
+		finanlist = xs.xqj4All(USRID);
 		String[][] data = new String[finanlist.size()][];
 		model = new DefaultTableModel(getDataArray(finanlist, data), columns);
 		jTable1.setModel(model);
@@ -696,9 +708,9 @@ public class Main extends javax.swing.JFrame {
 		String type = (String) jComboBox3.getSelectedItem();
 		String keyword = keyWord.getText();
 		XQJ4Search xs = new XQJ4Search();
-		String userid = "allen";//根据需求自己填
+		//String userid = "allen";//根据需求自己填
 		List<Finance> finanlist = new ArrayList<Finance>();
-		finanlist = xs.xqj4Selected(userid, financetype, type, keyword);
+		finanlist = xs.xqj4Selected(USRID, financetype, type, keyword);
 		String[][] data = new String[finanlist.size()][];
 		model = new DefaultTableModel(getDataArray(finanlist, data), columns);
 		jTable1.setModel(model);
