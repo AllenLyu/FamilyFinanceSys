@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><Finances><Finance><id>1
+</id><num>200
+</num><financetype>工资
+</financetype><type>收入
+</type><spendingtime>5-13
+</spendingtime><remark>工资的利息
+</remark><userid>1
+</userid></Finance><Finance><id>2
+</id><num>200
+</num><financetype>吃饭
+</financetype><type>支出
+</type><spendingtime>5-14
+</spendingtime><remark>请王寡妇吃饭
+</remark><userid>1
+</userid></Finance><Finance><id>3
+</id><num>400
+</num><financetype>娱乐
+</financetype><type>收入
+</type><spendingtime>5-14
+</spendingtime><remark>工资
+</remark><userid>1
+</userid></Finance></Finances>
