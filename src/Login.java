@@ -206,6 +206,7 @@ public class Login extends javax.swing.JFrame {
 				try {
 //					UIManager
 //							.setLookAndFeel("org.jb2011.lnf.beautyeye.BeautyEyeLookAndFeelWin");
+					UIManager.put("RootPane.setupButtonVisible",false);
 					BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.generalNoTranslucencyShadow;
 					BeautyEyeLNFHelper.launchBeautyEyeLNF();
 				} catch (Exception e) {
