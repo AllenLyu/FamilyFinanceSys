@@ -65,17 +65,17 @@ public class XQJ4Search {
                         		"return string($finance)");
             		}
             	}else if(!type.equalsIgnoreCase("")){
-            		if(keyword.equalsIgnoreCase("")){//EIE
+            		if(keyword.equalsIgnoreCase("")){//EIE//////////////////
             			exp = conn  
                         .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
                         		"where contains(string($finance/type),'"+type+"')"+
                         		"return string($finance)");
-            			System.out.println("bitch");
+            			
             		}else if(!keyword.equalsIgnoreCase("")){//EII
-            			exp = conn  
+            			exp = conn
                         .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
-                        		"where $finance/type='"+type+
-                        		"' and contains(string($finance/remark),'"+keyword+"')"+
+                        		"where contains(string($finance/type),'"+type+"')"+
+                        		" and contains(string($finance/remark),'"+keyword+"')"+
                         		"return string($finance)");
             		}
             	}
@@ -84,28 +84,28 @@ public class XQJ4Search {
             		if(keyword.equalsIgnoreCase("")){//IEE
             			exp = conn  
                         .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
-                        		"where $finance/financetype='"+financetype+"'"+
+                        		"where contains(string($finance/financetype),'"+financetype+"') "+
                         		"return string($finance)");
             		}else if(!keyword.equalsIgnoreCase("")){//IEI
             			exp = conn  
                         .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
-                        		"where $finance/financetype='"+financetype+
-                        		"' and contains(string($finance/remark),'"+keyword+"')"+
+                        		"where contains(string($finance/financetype),'"+financetype+"') "+
+                        		" and contains(string($finance/remark),'"+keyword+"')"+
                         		"return string($finance)");
             		}
             	}else if(!type.equalsIgnoreCase("")){
             		if(keyword.equalsIgnoreCase("")){//IIE
             			exp = conn  
                         .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
-                        		"where $finance/financetype='"+financetype+
-                        		"' and $finance/type='"+type+
-                        		"' return string($finance)");
+                        		"where contains(string($finance/financetype),'"+financetype+"')"+
+                        		" and contains(string($finance/type),'"+type+"')"+
+                        		" return string($finance)");
             		}else if(!keyword.equalsIgnoreCase("")){//III
             			exp = conn  
                         .prepareExpression("for $finance in doc('"+userid+".xml')/Finances/Finance " +
-                        		"where $finance/financetype='"+financetype
-                        		+"' and $finance/type='"+type
-                        		+"' and contains(string($finance/remark),'"+keyword+"')"+
+                        		"where contains(string($finance/financetype),'"+financetype+"')"+
+                        		" and contains(string($finance/type),'"+type+"')"+
+                        		" and contains(string($finance/remark),'"+keyword+"')"+
                         		"return string($finance)");
             		}
             	}
@@ -117,6 +117,7 @@ public class XQJ4Search {
                 for(int i=0;i<r.length;i++){
                 	String str=new String(r[i]);
                 	r[i]=str.replaceAll("\\s*","");
+                	
                 }
                 Finance finance=new Finance(Integer.parseInt(r[0]),
                 		Integer.parseInt(r[1]),r[2],r[3],r[4],r[5],
